@@ -449,10 +449,8 @@ const FAKE_SIGNALS = ['our client','confidential employer','various clients','le
 function isQualityJob(job) {
   const title = (job.title || '').toLowerCase();
   const company = (job.company || '').toLowerCase();
-  if (job.hoursAgo > 48) return false;
-  if (job.salaryRaw > 0 && job.salaryRaw < MIN_HOURLY) return false;
+  // Only filter obvious fake signals
   if (FAKE_SIGNALS.some(s => company.includes(s))) return false;
-  if (!URGENT_KEYWORDS.some(k => title.includes(k))) return false;
   job.trusted = TRUSTED_EMPLOYERS.some(e => company.includes(e));
   return true;
 }
@@ -497,10 +495,11 @@ async function fetchReedJobs(keywords, postcode) {
   return (data.results || []).map(j => {
     const hoursAgo = j.date ? Math.round((Date.now() - new Date(j.date)) / 36e5) : 999;
     const hourlyRate = j.minimumSalary ? j.minimumSalary / 2080 : 0;
+    const salaryDisplay = j.minimumSalary ? (hourlyRate < 50 ? `£${hourlyRate.toFixed(2)}/hr` : `£${Math.round(j.minimumSalary).toLocaleString()}/yr`) : 'Competitive';
     return {
       id: 'reed_' + j.jobId, title: j.jobTitle, company: j.employerName || 'Employer',
       location: j.locationName || postcode || 'UK',
-      salary: hourlyRate >= MIN_HOURLY ? `£${hourlyRate.toFixed(2)}/hr` : (j.minimumSalary ? `£${Math.round(j.minimumSalary).toLocaleString()}/yr` : null),
+      salary: salaryDisplay,
       salaryRaw: hourlyRate, type: j.jobType || 'Full-time',
       posted: formatDate(j.date), hoursAgo, source: 'Reed',
       applyUrl: j.jobUrl, category: detectCategory(j.jobTitle)
@@ -519,10 +518,11 @@ async function fetchAdzunaJobs(keywords, postcode) {
   return (data.results || []).map(j => {
     const hoursAgo = j.created ? Math.round((Date.now() - new Date(j.created)) / 36e5) : 999;
     const hourlyRate = j.salary_min ? j.salary_min / 2080 : 0;
+    const salaryDisplay = j.salary_min ? (hourlyRate < 50 ? `£${hourlyRate.toFixed(2)}/hr` : `£${Math.round(j.salary_min).toLocaleString()}/yr`) : 'Competitive';
     return {
       id: 'adz_' + j.id, title: j.title, company: j.company?.display_name || 'Employer',
       location: j.location?.display_name || postcode || 'UK',
-      salary: hourlyRate >= MIN_HOURLY ? `£${hourlyRate.toFixed(2)}/hr` : (j.salary_min ? `£${Math.round(j.salary_min).toLocaleString()}/yr` : null),
+      salary: salaryDisplay,
       salaryRaw: hourlyRate, type: j.contract_time === 'permanent' ? 'Full-time' : (j.contract_time || 'Full-time'),
       posted: formatDate(j.created), hoursAgo, source: 'Adzuna',
       applyUrl: j.redirect_url, category: detectCategory(j.title)
@@ -624,7 +624,7 @@ async function loadJobs(keywords, postcode) {
     if (adzunaOk) jobs.push(...adzuna.value);
 
     // Remove no-salary and duplicates
-    jobs = jobs.filter(j => j.salary);
+    // salary filter removed
     const seen = new Set();
     jobs = jobs.filter(j => {
       const key = (j.title + j.company).toLowerCase().replace(/\s/g,'');
