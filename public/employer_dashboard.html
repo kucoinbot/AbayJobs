@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employer Dashboard — HaqqJobs</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f0; color: #1a1a1a; }
+
+/* NAV */
+nav { background: #0f1923; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; height: 60px; }
+.nav-logo { color: white; font-size: 1.3rem; font-weight: 600; text-decoration: none; }
+.nav-logo span { color: #4ade80; }
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+.nav-user { color: rgba(255,255,255,0.7); font-size: 14px; }
+.btn-logout { padding: 7px 16px; background: rgba(255,255,255,0.1); color: white; border: none; border-radius: 8px; font-size: 13px; cursor: pointer; }
+
+/* AUTH SCREEN */
+.auth-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0f1923, #1a3a1a); padding: 2rem; }
+.auth-card { background: white; border-radius: 16px; padding: 2.5rem; width: 100%; max-width: 420px; }
+.auth-card h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; }
+.auth-card p { color: #666; font-size: 14px; margin-bottom: 2rem; }
+.auth-tabs { display: flex; gap: 0; margin-bottom: 2rem; border-bottom: 2px solid #e8e8e3; }
+.auth-tab { flex: 1; padding: 10px; text-align: center; font-size: 14px; cursor: pointer; color: #888; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+.auth-tab.active { color: #0f1923; font-weight: 600; border-bottom-color: #4ade80; }
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 5px; }
+.form-group input, .form-group select { width: 100%; padding: 11px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; }
+.form-group input:focus, .form-group select:focus { border-color: #4ade80; }
+.btn-auth { width: 100%; padding: 13px; background: #0f1923; color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 0.5rem; }
+.btn-auth:hover { background: #1a2d3a; }
+.auth-divider { text-align: center; color: #aaa; font-size: 13px; margin: 1rem 0; }
+.btn-google { width: 100%; padding: 11px; background: white; color: #333; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.habesha-badge { background: #e1f5ee; color: #0f6e56; font-size: 12px; padding: 8px 14px; border-radius: 8px; margin-bottom: 1rem; text-align: center; }
+
+/* DASHBOARD */
+.dashboard { display: none; }
+.page-wrap { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+
+/* TOP CARDS */
+.metric-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+.metric-card { background: white; border: 1px solid #e8e8e3; border-radius: 12px; padding: 1.25rem; }
+.metric-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+.metric-value { font-size: 1.8rem; font-weight: 700; color: #1a1a1a; }
+.metric-sub { font-size: 12px; color: #4ade80; margin-top: 4px; }
+.metric-card.green { border-left: 3px solid #4ade80; }
+
+/* MAIN GRID */
+.dash-grid { display: grid; grid-template-columns: 1fr 320px; gap: 2rem; }
+
+/* SECTION */
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.section-title { font-size: 13px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.06em; }
+.btn-new { padding: 8px 18px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
+
+/* JOB LISTING CARDS */
+.job-listing { background: white; border: 1px solid #e8e8e3; border-radius: 12px; padding: 1.25rem; margin-bottom: 12px; }
+.jl-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+.jl-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.jl-meta { font-size: 13px; color: #666; margin-bottom: 10px; }
+.jl-stats { display: flex; gap: 1.5rem; }
+.jl-stat { font-size: 13px; color: #555; }
+.jl-stat strong { color: #1a1a1a; }
+.status-badge { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.status-active { background: #e1f5ee; color: #0f6e56; }
+.status-expired { background: #f5e8e8; color: #8B0000; }
+.status-pending { background: #faeeda; color: #854f0b; }
+.jl-actions { display: flex; gap: 8px; margin-top: 12px; }
+.btn-sm { padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; border: none; }
+.btn-edit { background: #f0f0eb; color: #333; }
+.btn-boost { background: #0f1923; color: white; }
+.btn-pause { background: #f5e8e8; color: #8B0000; }
+.btn-delete { background: transparent; color: #aaa; border: 1px solid #ddd !important; }
+.days-left { font-size: 12px; color: #888; margin-top: 4px; }
+.progress-bar { height: 4px; background: #f0f0eb; border-radius: 4px; margin-top: 8px; }
+.progress-fill { height: 100%; background: #4ade80; border-radius: 4px; }
+
+/* SIDEBAR CARDS */
+.sidebar-card { background: white; border: 1px solid #e8e8e3; border-radius: 12px; padding: 1.25rem; margin-bottom: 1.5rem; }
+.sidebar-title { font-size: 13px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem; }
+
+/* APPLICANTS */
+.applicant-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0eb; }
+.applicant-row:last-child { border-bottom: none; }
+.applicant-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: white; flex-shrink: 0; }
+.applicant-info { flex: 1; }
+.applicant-name { font-size: 14px; font-weight: 600; }
+.applicant-role { font-size: 12px; color: #888; }
+.applicant-time { font-size: 11px; color: #aaa; }
+.btn-view { padding: 5px 12px; background: #f0f0eb; color: #333; border: none; border-radius: 6px; font-size: 12px; cursor: pointer; }
+
+/* PLAN CARD */
+.plan-card { background: linear-gradient(135deg, #0f1923, #1a3a1a); border-radius: 12px; padding: 1.5rem; color: white; }
+.plan-name { font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+.plan-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+.plan-features { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1.25rem; }
+.plan-feat { font-size: 13px; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 6px; }
+.plan-feat::before { content: "✓"; color: #4ade80; font-weight: 700; }
+.btn-upgrade { width: 100%; padding: 10px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; }
+
+/* ACTIVITY FEED */
+.activity-item { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0eb; align-items: flex-start; }
+.activity-item:last-child { border-bottom: none; }
+.activity-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+.activity-text { font-size: 13px; color: #555; flex: 1; line-height: 1.4; }
+.activity-text strong { color: #1a1a1a; }
+.activity-time { font-size: 11px; color: #aaa; white-space: nowrap; }
+
+/* POST JOB MODAL */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 200; justify-content: center; align-items: center; }
+.modal-overlay.open { display: flex; }
+.modal { background: white; border-radius: 16px; padding: 2rem; width: 90%; max-width: 560px; max-height: 90vh; overflow-y: auto; }
+.modal h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem; }
+.modal p { color: #666; font-size: 14px; margin-bottom: 1.5rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group textarea { width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; resize: vertical; min-height: 90px; font-family: inherit; }
+.form-group textarea:focus { border-color: #4ade80; }
+.modal-footer { display: flex; gap: 10px; margin-top: 1.5rem; }
+.btn-cancel { flex: 1; padding: 11px; border: 1px solid #ddd; background: white; border-radius: 8px; font-size: 14px; cursor: pointer; }
+.btn-submit { flex: 2; padding: 11px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; }
+.price-note { background: #e1f5ee; color: #0f6e56; font-size: 13px; padding: 10px 14px; border-radius: 8px; margin-bottom: 1rem; font-weight: 600; }
+
+/* STEPS */
+.steps { display: flex; gap: 0; margin-bottom: 1.5rem; }
+.step { flex: 1; padding: 10px; text-align: center; font-size: 13px; color: #aaa; border-bottom: 2px solid #e8e8e3; position: relative; }
+.step.active { color: #0f1923; font-weight: 600; border-bottom-color: #4ade80; }
+.step.done { color: #4ade80; border-bottom-color: #4ade80; }
+
+@media (max-width: 768px) {
+  .metric-row { grid-template-columns: 1fr 1fr; }
+  .dash-grid { grid-template-columns: 1fr; }
+  nav .nav-user { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Haqq<span>Jobs</span></a>
+  <div class="nav-right">
+    <span class="nav-user" id="nav-user-name"></span>
+    <button class="btn-logout" onclick="logout()">Log out</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUTH SCREEN                                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="auth-screen" id="auth-screen">
+  <div class="auth-card">
+    <h2>Employer portal</h2>
+    <p>Post jobs and reach thousands of Habesha job seekers across the UK.</p>
+
+    <div class="auth-tabs">
+      <div class="auth-tab active" onclick="switchAuthTab('login')">Log in</div>
+      <div class="auth-tab" onclick="switchAuthTab('register')">Register</div>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="login-form">
+      <div class="form-group">
+        <label>Email address</label>
+        <input type="email" id="login-email" placeholder="your@company.com" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="login-password" placeholder="••••••••" />
+      </div>
+      <button class="btn-auth" onclick="doLogin()">Log in to dashboard</button>
+      <div class="auth-divider">or</div>
+      <button class="btn-google">
+        <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 002.38-5.88c0-.57-.05-.66-.15-1.18z"/><path fill="#34A853" d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 01-7.18-2.54H1.83v2.07A8 8 0 008.98 17z"/><path fill="#FBBC05" d="M4.5 10.52a4.8 4.8 0 010-3.04V5.41H1.83a8 8 0 000 7.18l2.67-2.07z"/><path fill="#EA4335" d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 001.83 5.4L4.5 7.49a4.77 4.77 0 014.48-3.3z"/></svg>
+        Continue with Google
+      </button>
+    </div>
+
+    <!-- REGISTER -->
+    <div id="register-form" style="display:none;">
+      <div class="habesha-badge">🌿 Habesha business? Post your first job FREE for 30 days</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Company name</label>
+          <input type="text" placeholder="Your business name" />
+        </div>
+        <div class="form-group">
+          <label>Business type</label>
+          <select>
+            <option>Logistics / Warehouse</option>
+            <option>Security</option>
+            <option>Construction</option>
+            <option>Restaurant / Café</option>
+            <option>Hair salon</option>
+            <option>Retail / Shop</option>
+            <option>Recruitment agency</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email address</label>
+        <input type="email" placeholder="your@company.com" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" placeholder="Create a password" />
+      </div>
+      <div class="form-group">
+        <label>Are you a Habesha (Ethiopian/Eritrean) business?</label>
+        <select>
+          <option>Yes — I qualify for free posting</option>
+          <option>No — standard pricing applies</option>
+        </select>
+      </div>
+      <button class="btn-auth" onclick="doLogin()">Create account & continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- DASHBOARD                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="dashboard" id="dashboard">
+<div class="page-wrap">
+
+  <!-- METRICS -->
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+    <div>
+      <h2 style="font-size:1.3rem;font-weight:700;">Good morning, <span id="company-name">Zara Restaurant</span> 👋</h2>
+      <p style="font-size:14px;color:#888;margin-top:3px;">Here's how your job listings are performing</p>
+    </div>
+    <button class="btn-new" onclick="openPostModal()">+ Post a new job</button>
+  </div>
+
+  <div class="metric-row">
+    <div class="metric-card green">
+      <div class="metric-label">Active listings</div>
+      <div class="metric-value">2</div>
+      <div class="metric-sub">↑ 1 new this week</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Total applicants</div>
+      <div class="metric-value">34</div>
+      <div class="metric-sub" style="color:#0f6e56;">↑ 8 this week</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Job views</div>
+      <div class="metric-value">412</div>
+      <div class="metric-sub" style="color:#0f6e56;">↑ 64 this week</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Total spent</div>
+      <div class="metric-value">£50</div>
+      <div class="metric-sub" style="color:#888;">1 paid listing</div>
+    </div>
+  </div>
+
+  <div class="dash-grid">
+    <!-- LEFT: JOB LISTINGS -->
+    <div>
+      <div class="section-header">
+        <div class="section-title">Your job listings</div>
+        <button class="btn-new" onclick="openPostModal()">+ Post new job</button>
+      </div>
+
+      <!-- JOB 1 -->
+      <div class="job-listing">
+        <div class="jl-top">
+          <div style="flex:1;">
+            <div class="jl-title">Kitchen Assistant</div>
+            <div class="jl-meta">Zara Restaurant · London · £12.21/hr · Part-time</div>
+            <div class="jl-stats">
+              <div class="jl-stat"><strong>18</strong> applicants</div>
+              <div class="jl-stat"><strong>224</strong> views</div>
+              <div class="jl-stat"><strong>8.0%</strong> click rate</div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
+            <div class="days-left">18 days left · expires 27 Jun 2026</div>
+          </div>
+          <div style="text-align:right;">
+            <span class="status-badge status-active">● Active</span>
+            <div class="jl-actions" style="justify-content:flex-end;">
+              <button class="btn-sm btn-edit">Edit</button>
+              <button class="btn-sm btn-boost" onclick="openBoostModal()">⚡ Boost</button>
+              <button class="btn-sm btn-pause">Pause</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JOB 2 -->
+      <div class="job-listing">
+        <div class="jl-top">
+          <div style="flex:1;">
+            <div class="jl-title">Waitress / Waiter</div>
+            <div class="jl-meta">Zara Restaurant · London · £12.21/hr + tips · Full-time</div>
+            <div class="jl-stats">
+              <div class="jl-stat"><strong>16</strong> applicants</div>
+              <div class="jl-stat"><strong>188</strong> views</div>
+              <div class="jl-stat"><strong>8.5%</strong> click rate</div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
+            <div class="days-left">12 days left · expires 21 Jun 2026</div>
+          </div>
+          <div style="text-align:right;">
+            <span class="status-badge status-active">● Active</span>
+            <div class="jl-actions" style="justify-content:flex-end;">
+              <button class="btn-sm btn-edit">Edit</button>
+              <button class="btn-sm btn-boost" onclick="openBoostModal()">⚡ Boost</button>
+              <button class="btn-sm btn-pause">Pause</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JOB 3 - EXPIRED -->
+      <div class="job-listing" style="opacity:0.6;">
+        <div class="jl-top">
+          <div style="flex:1;">
+            <div class="jl-title">Delivery Driver</div>
+            <div class="jl-meta">Zara Restaurant · London · £12.21/hr · Part-time</div>
+            <div class="jl-stats">
+              <div class="jl-stat"><strong>0</strong> applicants</div>
+              <div class="jl-stat"><strong>0</strong> views</div>
+            </div>
+            <div class="days-left" style="color:#cc4444;">Expired 1 Jun 2026</div>
+          </div>
+          <div style="text-align:right;">
+            <span class="status-badge status-expired">Expired</span>
+            <div class="jl-actions" style="justify-content:flex-end;">
+              <button class="btn-sm btn-boost" onclick="openPostModal()" style="background:#4ade80;color:#0a1a0a;">Repost — £50</button>
+              <button class="btn-sm btn-delete" style="border:1px solid #ddd;">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RECENT APPLICANTS -->
+      <div class="section-header" style="margin-top:2rem;">
+        <div class="section-title">Recent applicants</div>
+        <a href="#" style="font-size:13px;color:#0f6e56;text-decoration:none;">View all 34 →</a>
+      </div>
+
+      <div style="background:white;border:1px solid #e8e8e3;border-radius:12px;padding:1.25rem;">
+        <div class="applicant-row">
+          <div class="applicant-avatar" style="background:#1a4d8f;">YM</div>
+          <div class="applicant-info">
+            <div class="applicant-name">Yohannes Mehari</div>
+            <div class="applicant-role">Applied for: Kitchen Assistant</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="applicant-time">2 hrs ago</div>
+            <button class="btn-view" style="margin-top:4px;">View CV</button>
+          </div>
+        </div>
+        <div class="applicant-row">
+          <div class="applicant-avatar" style="background:#8B0000;">SH</div>
+          <div class="applicant-info">
+            <div class="applicant-name">Sara Haile</div>
+            <div class="applicant-role">Applied for: Waitress / Waiter</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="applicant-time">5 hrs ago</div>
+            <button class="btn-view" style="margin-top:4px;">View CV</button>
+          </div>
+        </div>
+        <div class="applicant-row">
+          <div class="applicant-avatar" style="background:#2d6a2d;">TG</div>
+          <div class="applicant-info">
+            <div class="applicant-name">Tesfaye Girma</div>
+            <div class="applicant-role">Applied for: Kitchen Assistant</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="applicant-time">Yesterday</div>
+            <button class="btn-view" style="margin-top:4px;">View CV</button>
+          </div>
+        </div>
+        <div class="applicant-row">
+          <div class="applicant-avatar" style="background:#c8860a;">MA</div>
+          <div class="applicant-info">
+            <div class="applicant-name">Miriam Asgede</div>
+            <div class="applicant-role">Applied for: Waitress / Waiter</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="applicant-time">Yesterday</div>
+            <button class="btn-view" style="margin-top:4px;">View CV</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div>
+
+      <!-- PLAN -->
+      <div class="plan-card" style="margin-bottom:1.5rem;">
+        <div class="plan-name">Current plan</div>
+        <div class="plan-title">🌿 Habesha Business — Free</div>
+        <div class="plan-features">
+          <div class="plan-feat">1 free job post per month</div>
+          <div class="plan-feat">Sidebar listing on homepage</div>
+          <div class="plan-feat">Community trust badge</div>
+        </div>
+        <button class="btn-upgrade" onclick="openUpgradeModal()">Upgrade — post unlimited jobs</button>
+      </div>
+
+      <!-- ACTIVITY -->
+      <div class="sidebar-card">
+        <div class="sidebar-title">Recent activity</div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:#4ade80;"></div>
+          <div class="activity-text"><strong>Yohannes Mehari</strong> applied for Kitchen Assistant</div>
+          <div class="activity-time">2h ago</div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:#4ade80;"></div>
+          <div class="activity-text"><strong>Sara Haile</strong> applied for Waitress</div>
+          <div class="activity-time">5h ago</div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:#185fa5;"></div>
+          <div class="activity-text">Your <strong>Kitchen Assistant</strong> listing got 12 new views</div>
+          <div class="activity-time">Today</div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:#854f0b;"></div>
+          <div class="activity-text"><strong>Delivery Driver</strong> listing expired</div>
+          <div class="activity-time">8 days ago</div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:#4ade80;"></div>
+          <div class="activity-text">Account created · Welcome to HaqqJobs 🌿</div>
+          <div class="activity-time">10 days ago</div>
+        </div>
+      </div>
+
+      <!-- TIPS -->
+      <div class="sidebar-card">
+        <div class="sidebar-title">Tips to get more applicants</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="font-size:13px;color:#555;display:flex;gap:8px;align-items:flex-start;"><span>💡</span><span>Add a salary range — jobs with salary get <strong>3x more views</strong></span></div>
+          <div style="font-size:13px;color:#555;display:flex;gap:8px;align-items:flex-start;"><span>📸</span><span>Add your business logo to stand out</span></div>
+          <div style="font-size:13px;color:#555;display:flex;gap:8px;align-items:flex-start;"><span>⚡</span><span>Boost your listing to appear at the top of search results</span></div>
+          <div style="font-size:13px;color:#555;display:flex;gap:8px;align-items:flex-start;"><span>🌿</span><span>Mention Tigrinya or Amharic speakers welcome — it attracts your community</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- POST JOB MODAL -->
+<div class="modal-overlay" id="post-modal">
+  <div class="modal">
+    <div class="steps">
+      <div class="step done">1. Details</div>
+      <div class="step active">2. Preview</div>
+      <div class="step">3. Payment</div>
+    </div>
+    <h3>Post a new job</h3>
+    <p>Your listing goes live immediately after payment. Habesha businesses get first post free.</p>
+    <div class="price-note">🌿 Habesha business — first job post FREE for 30 days</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Job title</label>
+        <input type="text" placeholder="e.g. Kitchen Assistant" />
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <select>
+          <option>Restaurant / Catering</option>
+          <option>Warehouse</option>
+          <option>Security</option>
+          <option>Construction</option>
+          <option>Driving</option>
+          <option>Cleaning</option>
+          <option>Retail</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Location</label>
+        <input type="text" placeholder="e.g. London, E1" />
+      </div>
+      <div class="form-group">
+        <label>Salary</label>
+        <input type="text" placeholder="e.g. £12.21/hr or £22k/yr" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Job type</label>
+        <select>
+          <option>Full-time</option>
+          <option>Part-time</option>
+          <option>Temporary</option>
+          <option>Zero hours</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>How to apply</label>
+        <input type="text" placeholder="Email or phone number" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Job description</label>
+      <textarea placeholder="What will they do? What experience is needed? Any language requirements? Working hours?"></textarea>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal('post-modal')">Cancel</button>
+      <button class="btn-submit">Post job free →</button>
+    </div>
+  </div>
+</div>
+
+<!-- BOOST MODAL -->
+<div class="modal-overlay" id="boost-modal">
+  <div class="modal">
+    <h3>⚡ Boost your listing</h3>
+    <p>Get your job to the top of search results and reach more applicants faster.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
+      <div style="border:1px solid #e8e8e3;border-radius:10px;padding:1.25rem;text-align:center;">
+        <div style="font-weight:700;font-size:1.2rem;margin-bottom:4px;">£10</div>
+        <div style="font-size:13px;color:#555;margin-bottom:8px;">3 day boost</div>
+        <div style="font-size:12px;color:#888;">Top of results<br>3x more views</div>
+      </div>
+      <div style="border:2px solid #4ade80;border-radius:10px;padding:1.25rem;text-align:center;">
+        <div style="font-size:10px;background:#4ade80;color:#0a1a0a;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:6px;font-weight:600;">BEST</div>
+        <div style="font-weight:700;font-size:1.2rem;margin-bottom:4px;">£20</div>
+        <div style="font-size:13px;color:#555;margin-bottom:8px;">7 day boost</div>
+        <div style="font-size:12px;color:#888;">Featured badge<br>5x more views</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal('boost-modal')">Cancel</button>
+      <button class="btn-submit">Pay & boost now →</button>
+    </div>
+  </div>
+</div>
+
+<!-- UPGRADE MODAL -->
+<div class="modal-overlay" id="upgrade-modal">
+  <div class="modal">
+    <h3>Upgrade your plan</h3>
+    <p>Post unlimited jobs and reach more of the community.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
+      <div style="border:1px solid #e8e8e3;border-radius:10px;padding:1.25rem;">
+        <div style="font-weight:700;font-size:1.1rem;margin-bottom:4px;">£30/month</div>
+        <div style="font-size:13px;color:#555;margin-bottom:10px;">Standard</div>
+        <div style="font-size:12px;color:#888;line-height:1.6;">3 active listings<br>Basic analytics<br>Email support</div>
+      </div>
+      <div style="border:2px solid #4ade80;border-radius:10px;padding:1.25rem;">
+        <div style="font-size:10px;background:#4ade80;color:#0a1a0a;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:6px;font-weight:600;">POPULAR</div>
+        <div style="font-weight:700;font-size:1.1rem;margin-bottom:4px;">£60/month</div>
+        <div style="font-size:13px;color:#555;margin-bottom:10px;">Pro</div>
+        <div style="font-size:12px;color:#888;line-height:1.6;">Unlimited listings<br>Full analytics<br>Homepage sidebar ad<br>Priority support</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal('upgrade-modal')">Maybe later</button>
+      <button class="btn-submit">Upgrade now →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchAuthTab(tab) {
+  document.querySelectorAll('.auth-tab').forEach((t,i) => t.classList.toggle('active', (i===0&&tab==='login')||(i===1&&tab==='register')));
+  document.getElementById('login-form').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('register-form').style.display = tab === 'register' ? 'block' : 'none';
+}
+
+function doLogin() {
+  document.getElementById('auth-screen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  document.getElementById('nav-user-name').textContent = 'Zara Restaurant';
+  document.getElementById('company-name').textContent = 'Zara Restaurant';
+}
+
+function logout() {
+  document.getElementById('auth-screen').style.display = 'flex';
+  document.getElementById('dashboard').style.display = 'none';
+}
+
+function openPostModal() { document.getElementById('post-modal').classList.add('open'); }
+function openBoostModal() { document.getElementById('boost-modal').classList.add('open'); }
+function openUpgradeModal() { document.getElementById('upgrade-modal').classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+});
+</script>
+</body>
+</html>
