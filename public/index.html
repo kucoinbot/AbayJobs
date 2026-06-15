@@ -470,10 +470,13 @@ async function loadJobs(keywords, postcode) {
     const kw = keywords || 'warehouse security construction care cleaning driver';
     const loc = postcode || '';
 
-    const [reedRes, adzunaRes] = await Promise.allSettled([
-      fetch('/api/reed?keywords=' + encodeURIComponent(kw) + '&location=' + encodeURIComponent(loc)).then(r => r.json()),
-      fetch('/api/adzuna?keywords=' + encodeURIComponent(kw) + '&location=' + encodeURIComponent(loc)).then(r => r.json())
-    ]);
+    const API_BASE = "https://haqqjobs-api.onrender.com";
+
+const [reedRes, adzunaRes] = await Promise.allSettled([
+  fetch(`${API_BASE}/api/reed?keywords=${encodeURIComponent(kw)}&location=${encodeURIComponent(loc)}`).then(r => r.json()),
+  fetch(`${API_BASE}/api/adzuna?keywords=${encodeURIComponent(kw)}&location=${encodeURIComponent(loc)}`).then(r => r.json())
+]);
+
 
     let jobs = [];
 
