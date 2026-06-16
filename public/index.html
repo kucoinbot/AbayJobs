@@ -16,78 +16,71 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
 .btn-nav { padding: 7px 18px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
 .btn-nav:hover { background: #3ecf73; }
 
-.hero { background: linear-gradient(135deg, #0f1923 0%, #172535 100%); color: white; text-align: center; padding: 3.5rem 1rem 4rem 1rem; position: relative; }
-.hero h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.5px; }
-.hero p { color: #94a3b8; font-size: 1rem; max-width: 500px; margin: 0 auto 2rem auto; line-height: 1.5; }
+.hero { background: linear-gradient(135deg, #0f1923 0%, #172535 100%); color: white; text-align: center; padding: 4.5rem 1rem 5rem 1rem; position: relative; }
+.hero h1 { font-size: 2.6rem; font-weight: 800; margin-bottom: 0.75rem; letter-spacing: -1px; }
+.hero p { color: #94a3b8; font-size: 1.1rem; max-width: 600px; margin: 0 auto 2.5rem auto; line-height: 1.6; }
 
-.search-container { max-width: 700px; margin: 0 auto; background: white; padding: 6px; border-radius: 12px; display: flex; gap: 4px; box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
-.search-input { flex: 1; border: none; padding: 12px 16px; font-size: 15px; outline: none; border-radius: 8px; color: #1a1a1a; }
+.search-container { max-width: 750px; margin: 0 auto; background: white; padding: 8px; border-radius: 14px; display: flex; gap: 6px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+.search-input { flex: 1; border: none; padding: 14px 20px; font-size: 16px; outline: none; border-radius: 10px; color: #1a1a1a; }
 .search-input::placeholder { color: #94a3b8; }
-.btn-search { background: #4ade80; color: #0a1a0a; border: none; padding: 0 24px; font-size: 14px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+.btn-search { background: #4ade80; color: #0a1a0a; border: none; padding: 0 32px; font-size: 15px; font-weight: 700; border-radius: 10px; cursor: pointer; transition: background 0.2s; }
 .btn-search:hover { background: #3ecf73; }
 
-.main-layout { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; display: grid; grid-template-columns: 240px 1fr; gap: 1.5rem; }
+.main-layout { max-width: 1000px; margin: -2rem auto 4rem auto; padding: 0 1rem; position: relative; z-index: 10; }
 
-.sidebar { background: white; border-radius: 12px; padding: 1.25rem; border: 1px solid #e2e8f0; height: fit-content; }
-.sidebar h3 { font-size: 12px; uppercase; color: #64748b; letter-spacing: 0.5px; margin-bottom: 1rem; }
-.filter-btn { display: flex; align-items: center; width: 100%; border: none; background: none; padding: 10px 12px; text-align: left; font-size: 14px; color: #475569; border-radius: 8px; cursor: pointer; margin-bottom: 4px; font-weight: 500; }
-.filter-btn:hover { background: #f8fafc; color: #0f172a; }
-.filter-btn.active { background: #f0fdf4; color: #166534; font-weight: 600; }
-.filter-count { margin-left: auto; background: #f1f5f9; color: #64748b; font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
-.filter-btn.active .filter-count { background: #dcfce7; color: #166534; }
+.tabs { display: flex; gap: 6px; background: #1e293b; padding: 6px; border-radius: 12px; margin-bottom: 1.5rem; overflow-x: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.tab-btn { border: none; background: none; color: #94a3b8; padding: 10px 18px; font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+.tab-btn:hover { color: white; background: rgba(255,255,255,0.05); }
+.tab-btn.active { background: #4ade80; color: #0f1923; }
+.badge { background: rgba(255,255,255,0.1); color: white; font-size: 11px; padding: 2px 6px; border-radius: 6px; font-weight: 500; }
+.tab-btn.active .badge { background: rgba(15,25,35,0.15); color: #0f1923; font-weight: 600; }
 
-.habesha-promo { background: linear-gradient(135deg, #1e3a8a 0%, #0d1b3e 100%); color: white; border-radius: 12px; padding: 1.25rem; margin-top: 1rem; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
-.habesha-promo h4 { font-size: 14px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-.habesha-promo p { font-size: 12px; color: #93c5fd; margin-bottom: 12px; line-height: 1.4; }
-.btn-promo { width: 100%; background: #3b82f6; color: white; border: none; padding: 8px; font-size: 12px; font-weight: 600; border-radius: 6px; cursor: pointer; text-align: center; }
-.btn-promo:hover { background: #2563eb; }
-
-.feed-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.feed-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding: 0 4px; }
 .status-text { font-size: 13px; color: #64748b; font-weight: 500; }
 
-.jobs-container { display: flex; flex-direction: column; gap: 0.75rem; }
-.job-card { background: white; border-radius: 12px; padding: 1.25rem; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: flex-start; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
-.job-card:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.03); border-color: #cbd5e1; }
+.jobs-container { display: flex; flex-direction: column; gap: 1rem; }
+.job-card { background: white; border-radius: 14px; padding: 1.5rem; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: flex-start; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+.job-card:hover { transform: translateY(-2px); box-shadow: 0 12px 20px -5px rgba(0,0,0,0.05); border-color: #cbd5e1; }
 .job-main { flex: 1; }
-.job-badge { display: inline-block; padding: 3px 8px; background: #f1f5f9; color: #475569; font-size: 11px; font-weight: 600; border-radius: 4px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.3px; }
+.job-badge { display: inline-block; padding: 4px 10px; background: #f1f5f9; color: #475569; font-size: 11px; font-weight: 700; border-radius: 6px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
 .job-badge.premium { background: #fef3c7; color: #92400e; }
-.job-title { font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 4px; line-height: 1.3; }
-.job-company { font-size: 14px; color: #475569; margin-bottom: 12px; font-weight: 500; }
-.job-meta { display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; color: #64748b; }
-.meta-item { display: flex; align-items: center; gap: 4px; }
-.job-side { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
-.source-tag { font-size: 11px; font-weight: 600; padding: 2px 6px; border-radius: 4px; background: #f8fafc; border: 1px solid #e2e8f0; color: #64748b; }
+.job-title { font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 6px; line-height: 1.3; }
+.job-company { font-size: 15px; color: #475569; margin-bottom: 16px; font-weight: 500; }
+.job-meta { display: flex; flex-wrap: wrap; gap: 16px; font-size: 14px; color: #64748b; }
+.meta-item { display: flex; align-items: center; gap: 6px; }
+.job-side { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
+.source-tag { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: #f8fafc; border: 1px solid #e2e8f0; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
 .source-tag.reed { background: #eff6ff; color: #1e40af; border-color: #bfdbfe; }
 .source-tag.adzuna { background: #fdf2f8; color: #9d174d; border-color: #fbcfe8; }
-.btn-apply-card { padding: 8px 16px; background: #0f1923; color: white; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.btn-apply-card { padding: 10px 20px; background: #0f1923; color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
 .btn-apply-card:hover { background: #1a293a; }
 
-.loading { text-align: center; padding: 4rem 1rem; color: #64748b; background: white; border-radius: 12px; border: 1px solid #e2e8f0; }
-.spinner { width: 32px; height: 32px; border: 3px solid #e2e8f0; border-top-color: #4ade80; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem auto; }
+.loading { text-align: center; padding: 5rem 1rem; color: #64748b; background: white; border-radius: 14px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+.spinner { width: 36px; height: 36px; border: 3px solid #e2e8f0; border-top-color: #4ade80; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1.25rem auto; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,25,35,0.6); backdrop-filter: blur(2px); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,25,35,0.7); backdrop-filter: blur(4px); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
 .overlay.open { opacity: 1; pointer-events: auto; }
-.modal { background: white; width: 100%; max-width: 460px; border-radius: 16px; padding: 1.75rem; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.15); transform: translateY(10px); transition: transform 0.2s; position: relative; }
+.modal { background: white; width: 100%; max-width: 480px; border-radius: 20px; padding: 2rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); transform: translateY(15px); transition: transform 0.2s; position: relative; }
 .overlay.open .modal { transform: translateY(0); }
-.modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 20px; color: #94a3b8; cursor: pointer; }
-.modal-close:hover { color: #475569; }
-.modal h2 { font-size: 1.25rem; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
-.modal p { font-size: 13px; color: #64748b; margin-bottom: 1.25rem; line-height: 1.4; }
-.form-group { margin-bottom: 1rem; }
-.form-label { display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px; }
-.form-input { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; }
-.form-input:focus { border-color: #4ade80; }
-.btn-submit { width: 100%; padding: 11px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 0.5rem; }
+.modal-close { position: absolute; top: 1.25rem; right: 1.25rem; background: none; border: none; font-size: 24px; color: #94a3b8; cursor: pointer; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+.modal-close:hover { color: #475569; background: #f1f5f9; }
+.modal h2 { font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 8px; letter-spacing: -0.5px; }
+.modal p { font-size: 14px; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5; }
+.form-group { margin-bottom: 1.25rem; }
+.form-label { display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 6px; }
+.form-input { width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 15px; outline: none; transition: border-color 0.2s; }
+.form-input:focus { border-color: #4ade80; box-shadow: 0 0 0 3px rgba(74,222,128,0.1); }
+.btn-submit { width: 100%; padding: 13px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 0.5rem; transition: background 0.2s; }
 .btn-submit:hover { background: #3ecf73; }
 
 @media (max-width: 768px) {
-  .main-layout { grid-template-columns: 1fr; }
-  .hero h1 { font-size: 1.8rem; }
-  .search-container { flex-direction: column; padding: 6px; }
-  .btn-search { padding: 12px; }
-  .job-card { flex-direction: column; gap: 1rem; }
-  .job-side { width: 100%; flex-direction: row; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 10px; }
+  .hero h1 { font-size: 2rem; }
+  .search-container { flex-direction: column; padding: 6px; border-radius: 12px; }
+  .btn-search { padding: 14px; border-radius: 8px; }
+  .main-layout { margin-top: 1rem; }
+  .job-card { flex-direction: column; gap: 1.25rem; }
+  .job-side { width: 100%; flex-direction: row; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 12px; }
 }
 </style>
 </head>
@@ -113,35 +106,14 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
 </div>
 
 <div class="main-layout">
-  <div class="sidebar">
-    <h3>Categories</h3>
-    <button class="filter-btn active" id="btn-all" onclick="filterCategory('all')">
-      All Jobs <span class="filter-count" id="count-all">0</span>
-    </button>
-    <button class="filter-btn" id="btn-warehouse" onclick="filterCategory('warehouse')">
-      Warehouse & Logistics <span class="filter-count" id="count-warehouse">0</span>
-    </button>
-    <button class="filter-btn" id="btn-security" onclick="filterCategory('security')">
-      Security <span class="filter-count" id="count-security">0</span>
-    </button>
-    <button class="filter-btn" id="btn-care" onclick="filterCategory('care')">
-      Healthcare & Care <span class="filter-count" id="count-care">0</span>
-    </button>
-    <button class="filter-btn" id="btn-cleaning" onclick="filterCategory('cleaning')">
-      Cleaning & Facilities <span class="filter-count" id="count-cleaning">0</span>
-    </button>
-    <button class="filter-btn" id="btn-driver" onclick="filterCategory('driver')">
-      Driving & Delivery <span class="filter-count" id="count-driver">0</span>
-    </button>
-    <button class="filter-btn" id="btn-other" onclick="filterCategory('other')">
-      Other Services <span class="filter-count" id="count-other">0</span>
-    </button>
-
-    <div class="habesha-promo">
-      <h4>🇪🇹 🇪🇷 Habesha Owned?</h4>
-      <p>Are you an Ethiopian or Eritrean business owner in the UK hiring staff? List your job here directly.</p>
-      <button class="btn-promo" onclick="openPostModal(true)">Post 100% Free →</button>
-    </div>
+  <div class="tabs">
+    <button class="tab-btn active" id="btn-all" onclick="filterCategory('all')">All Jobs <span class="badge" id="count-all">0</span></button>
+    <button class="tab-btn" id="btn-warehouse" onclick="filterCategory('warehouse')">Logistics <span class="badge" id="count-warehouse">0</span></button>
+    <button class="tab-btn" id="btn-security" onclick="filterCategory('security')">Security <span class="badge" id="count-security">0</span></button>
+    <button class="tab-btn" id="btn-care" onclick="filterCategory('care')">Care <span class="badge" id="count-care">0</span></button>
+    <button class="tab-btn" id="btn-cleaning" onclick="filterCategory('cleaning')">Cleaning <span class="badge" id="count-cleaning">0</span></button>
+    <button class="tab-btn" id="btn-driver" onclick="filterCategory('driver')">Driving <span class="badge" id="count-driver">0</span></button>
+    <button class="tab-btn" id="btn-other" onclick="filterCategory('other')">Other <span class="badge" id="count-other">0</span></button>
   </div>
 
   <div class="main-feed">
@@ -190,15 +162,12 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
 </div>
 
 <script>
-// Point this straight to your Render backend link once deployed, or keep it as empty string if files are served from the same server
 var API = ''; 
-
 var allJobs = [];
 var currentFilter = 'all';
 
-// Initialize app when page completely loads
 window.addEventListener('DOMContentLoaded', function() {
-  loadJobs('warehouse', ''); // FIXED: Load a clean default search on startup
+  loadJobs('warehouse', ''); 
 });
 
 function handleSearch() {
@@ -210,11 +179,21 @@ function handleSearch() {
   }
 }
 
-// ─── LOAD JOBS FROM BACKEND ───────────────────────────────────
+// UK Postcode cleaner function
+function cleanLocationName(loc, fallbackSearch) {
+  if (!loc) return fallbackSearch || 'UK';
+  var trimmed = loc.trim();
+  var postcodeRegex = /^[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2}$/i;
+  if (postcodeRegex.test(trimmed) || (/^[A-Z]{1,2}[0-9]/i.test(trimmed) && trimmed.length <= 4)) {
+    return fallbackSearch && fallbackSearch !== 'warehouse' ? fallbackSearch.charAt(0).toUpperCase() + fallbackSearch.slice(1) : 'United Kingdom';
+  }
+  return trimmed;
+}
+
 function loadJobs(kw, loc) {
   var list = document.getElementById('jobs-list');
   var status = document.getElementById('status-txt');
-  list.innerHTML = '<div class="loading"><div class="spinner"></div><p>Loading real UK jobs...</p><p style="font-size:12px;color:#aaa;margin-top:6px;">Please wait — may take up to 30 seconds</p></div>';
+  list.innerHTML = '<div class="loading"><div class="spinner"></div><p>Loading real UK jobs...</p></div>';
   if (status) status.textContent = 'Connecting...';
 
   var keywords = kw || 'warehouse'; 
@@ -224,27 +203,20 @@ function loadJobs(kw, loc) {
   var adzunaUrl = API + '/api/adzuna?keywords=' + encodeURIComponent(keywords) + '&location=' + encodeURIComponent(location);
 
   Promise.allSettled([
-    fetch(reedUrl).then(function(r) { 
-      if (!r.ok) throw new Error('Server error');
-      return r.json(); 
-    }),
-    fetch(adzunaUrl).then(function(r) { 
-      if (!r.ok) throw new Error('Server error');
-      return r.json(); 
-    })
+    fetch(reedUrl).then(function(r) { if (!r.ok) throw new Error(); return r.json(); }),
+    fetch(adzunaUrl).then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
   ]).then(function(results) {
-    var jobs = [];
+    var rawJobs = [];
     var reedCount = 0;
     var adzunaCount = 0;
 
-    // Process Reed results
     if (results[0].status === 'fulfilled' && results[0].value && results[0].value.results) {
       results[0].value.results.forEach(function(j) {
-        jobs.push({
+        rawJobs.push({
           id: 'r_' + j.jobId,
           title: j.jobTitle || 'Job',
           company: j.employerName || 'Employer',
-          location: j.locationName || location || 'UK',
+          location: cleanLocationName(j.locationName, location),
           salary: getSalary(j.minimumSalary),
           type: j.jobType || 'Full-time',
           posted: getDate(j.date),
@@ -256,14 +228,15 @@ function loadJobs(kw, loc) {
       reedCount = results[0].value.results.length;
     }
 
-    // Process Adzuna results
     if (results[1].status === 'fulfilled' && results[1].value && results[1].value.results) {
       results[1].value.results.forEach(function(j) {
-        jobs.push({
+        var locDisplay = 'UK';
+        if (j.location && j.location.display_name) locDisplay = j.location.display_name;
+        rawJobs.push({
           id: 'a_' + j.id,
           title: j.title || 'Job',
           company: (j.company && j.company.display_name) || 'Employer',
-          location: (j.location && j.location.display_name) || location || 'UK',
+          location: cleanLocationName(locDisplay, location),
           salary: getSalary(j.salary_min),
           type: j.contract_time === 'permanent' ? 'Full-time' : (j.contract_time || 'Full-time'),
           posted: getDate(j.created),
@@ -275,28 +248,30 @@ function loadJobs(kw, loc) {
       adzunaCount = results[1].value.results.length;
     }
 
-    allJobs = jobs;
+    // Duplicate Job Filter engine
+    var seenKeys = {};
+    var uniqueJobs = [];
+    rawJobs.forEach(function(job) {
+      var uniqueKey = (job.title + '||' + job.company + '||' + job.location.substring(0, 5)).toLowerCase().replace(/\s+/g, '');
+      if (!seenKeys[uniqueKey]) {
+        seenKeys[uniqueKey] = true;
+        uniqueJobs.push(job);
+      }
+    });
+
+    allJobs = uniqueJobs;
 
     if (status) {
-      if (jobs.length > 0) {
-        status.textContent = 'Reed: ' + reedCount + ' · Adzuna: ' + adzunaCount + ' — ' + jobs.length + ' jobs found';
-        status.style.color = '#0f6e56';
-      } else {
-        status.textContent = 'No jobs found right now. Try another category.';
-        status.style.color = '#cc8800';
-      }
+      status.textContent = 'Reed: ' + reedCount + ' · Adzuna: ' + adzunaCount + ' — ' + allJobs.length + ' unique jobs listed';
     }
 
     updateCategoryCounts();
     showJobs(currentFilter);
-
-  }).catch(function(err) {
-    list.innerHTML = '<div class="loading">Could not connect to server. Please refresh the page.</div>';
-    if (status) { status.textContent = 'Connection error'; status.style.color = '#cc0000'; }
+  }).catch(function() {
+    list.innerHTML = '<div class="loading">Could not connect to server. Please refresh.</div>';
   });
 }
 
-// ─── RENDER FILTERED JOBS TO FEED ─────────────────────────────
 function showJobs(filter) {
   var list = document.getElementById('jobs-list');
   var filtered = allJobs;
@@ -306,7 +281,7 @@ function showJobs(filter) {
   }
 
   if (filtered.length === 0) {
-    list.innerHTML = '<div class="loading">No jobs available under this tab. Use the search bar above to look for live openings.</div>';
+    list.innerHTML = '<div class="loading">No jobs listed inside this category currently. Try searching another role up above!</div>';
     return;
   }
 
@@ -335,13 +310,12 @@ function showJobs(filter) {
 
 function filterCategory(cat) {
   currentFilter = cat;
-  document.querySelectorAll('.filter-btn').forEach(function(btn) { btn.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(btn) { btn.classList.remove('active'); });
   var activeBtn = document.getElementById('btn-' + cat);
   if (activeBtn) activeBtn.classList.add('active');
   showJobs(cat);
 }
 
-// ─── CATEGORY MATCHING ALGORITHM ──────────────────────────────
 function getCategory(title) {
   if (!title) return 'other';
   var t = title.toLowerCase();
@@ -362,10 +336,9 @@ function updateCategoryCounts() {
   }
 }
 
-// ─── FORMATTERS ──────────────────────────────────────────────
 function getSalary(sal) {
   if (!sal || sal === 0) return 'Competitive rate';
-  if (sal < 100) return '£' + sal + ' / hour'; // Handles hourly outputs smoothly
+  if (sal < 100) return '£' + sal + ' / hour'; 
   return '£' + Number(sal).toLocaleString() + ' / year';
 }
 
@@ -379,7 +352,6 @@ function escapeHTML(str) {
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-// ─── OVERLAY WINDOW CONTROLS ──────────────────────────────────
 function openApplyModal(job) {
   document.getElementById('m-source').textContent = job.source;
   document.getElementById('m-source').className = 'job-badge ' + job.source.toLowerCase();
@@ -387,9 +359,9 @@ function openApplyModal(job) {
   document.getElementById('m-company').textContent = job.company;
   document.getElementById('m-details').innerHTML =
     '📍 Location: ' + job.location + '<br>' +
-    '💷 Salary Structure: ' + job.salary + '<br>' +
-    '⏰ Hours Scheme: ' + job.type + '<br>' +
-    '🕐 Date Published: ' + job.posted;
+    '💷 Salary: ' + job.salary + '<br>' +
+    '⏰ Type: ' + job.type + '<br>' +
+    '🕐 Posted: ' + job.posted;
   var applyBtn = document.getElementById('m-apply-btn');
   applyBtn.href = job.url && job.url !== '#' ? job.url : 'https://www.reed.co.uk';
   openModal('apply-modal');
