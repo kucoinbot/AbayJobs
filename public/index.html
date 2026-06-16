@@ -97,10 +97,10 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
 
 <div class="hero">
   <h1>Find Stable Work in the UK</h1>
-  <p>Connecting the Habesha community with real, high-volume employment opportunities in Logistics, Security, Care, and Services.</p>
+  <p>Connecting the Habesha community with real, high-volume employment opportunities across the UK.</p>
   
   <div class="search-container">
-    <input type="text" id="search-input" class="search-input" placeholder="Search title or keyword (e.g. Driver, Care, Cleaner)...">
+    <input type="text" id="search-input" class="search-input" placeholder="Search title and city... (e.g. Care Birmingham, Driver London)">
     <button class="btn-search" onclick="handleSearch()">Search Jobs</button>
   </div>
 </div>
@@ -166,26 +166,47 @@ var API = '';
 var allJobs = [];
 var currentFilter = 'all';
 
+// Fixed list of common UK cities to support smart search string parsing
+var UK_CITIES = ['london', 'birmingham', 'manchester', 'leeds', 'glasgow', 'sheffield', 'liverpool', 'bristol', 'newcastle', 'sunderland', 'wolverhampton', 'nottingham', 'leicester', 'coventry', 'belfast', 'hull', 'bradford', 'cardiff', 'stoke', 'southampton', 'reading', 'plymouth', 'derby', 'northampton', 'luton', 'portsmouth', 'aberdeen', 'milton keynes', 'oxford', 'cambridge', 'norwich', 'swindon', 'swansea', 'bournemouth', 'southend', 'ipswich', 'middlesbrough', 'peterborough', 'brighton', 'york', 'gloucester', 'blackpool', 'colchester', 'dundee', 'exeter', 'huddersfield', 'chester', 'salford'];
+
 window.addEventListener('DOMContentLoaded', function() {
   loadJobs('warehouse', ''); 
 });
 
 function handleSearch() {
   var term = document.getElementById('search-input').value.trim();
-  if (term.length > 0) {
-    loadJobs(term, '');
-  } else {
+  if (!term) {
     loadJobs('warehouse', '');
+    return;
   }
+  
+  // Parse inputs like "Driver Birmingham" out into accurate structured parameters
+  var lowerTerm = term.toLowerCase();
+  var detectedCity = '';
+  var detectedKw = term;
+  
+  for (var i = 0; i < UK_CITIES.length; i++) {
+    var city = UK_CITIES[i];
+    if (lowerTerm.includes(city)) {
+      detectedCity = city;
+      // Extract city substring out to isolate pure keyword phrase
+      detectedKw = term.replace(new RegExp(city, 'gi'), '').trim();
+      break;
+    }
+  }
+  
+  loadJobs(detectedKw || 'job', detectedCity);
 }
 
-// UK Postcode cleaner function
+// Fixed extraction handler cleans out raw postcodes if API drops them natively
 function cleanLocationName(loc, fallbackSearch) {
-  if (!loc) return fallbackSearch || 'UK';
+  if (!loc) return fallbackSearch ? fallbackSearch.charAt(0).toUpperCase() + fallbackSearch.slice(1) : 'United Kingdom';
   var trimmed = loc.trim();
+  
+  // RegEx intercepts and strips raw postcodes to keep card views polished
   var postcodeRegex = /^[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2}$/i;
   if (postcodeRegex.test(trimmed) || (/^[A-Z]{1,2}[0-9]/i.test(trimmed) && trimmed.length <= 4)) {
-    return fallbackSearch && fallbackSearch !== 'warehouse' ? fallbackSearch.charAt(0).toUpperCase() + fallbackSearch.slice(1) : 'United Kingdom';
+    return fallbackSearch ? fallbackSearch.charAt(0).toUpperCase() + fallbackSearch.slice(1) : 'United Kingdom';
   }
   return trimmed;
 }
@@ -193,8 +214,8 @@ function cleanLocationName(loc, fallbackSearch) {
 function loadJobs(kw, loc) {
   var list = document.getElementById('jobs-list');
   var status = document.getElementById('status-txt');
-  list.innerHTML = '<div class="loading"><div class="spinner"></div><p>Loading real UK jobs...</p></div>';
-  if (status) status.textContent = 'Connecting...';
+  list.innerHTML = '<div class="loading"><div class="spinner"></div><p>Querying comprehensive UK job pools...</p></div>';
+  if (status) status.textContent = 'Searching...';
 
   var keywords = kw || 'warehouse'; 
   var location = loc || '';
@@ -214,8 +235,8 @@ function loadJobs(kw, loc) {
       results[0].value.results.forEach(function(j) {
         rawJobs.push({
           id: 'r_' + j.jobId,
-          title: j.jobTitle || 'Job',
-          company: j.employerName || 'Employer',
+          title: j.jobTitle || 'Job Listing',
+          company: j.employerName || 'Hiring Employer',
           location: cleanLocationName(j.locationName, location),
           salary: getSalary(j.minimumSalary),
           type: j.jobType || 'Full-time',
@@ -230,12 +251,13 @@ function loadJobs(kw, loc) {
 
     if (results[1].status === 'fulfilled' && results[1].value && results[1].value.results) {
       results[1].value.results.forEach(function(j) {
-        var locDisplay = 'UK';
+        var locDisplay = '';
         if (j.location && j.location.display_name) locDisplay = j.location.display_name;
+        
         rawJobs.push({
           id: 'a_' + j.id,
-          title: j.title || 'Job',
-          company: (j.company && j.company.display_name) || 'Employer',
+          title: j.title || 'Job Listing',
+          company: (j.company && j.company.display_name) || 'Hiring Employer',
           location: cleanLocationName(locDisplay, location),
           salary: getSalary(j.salary_min),
           type: j.contract_time === 'permanent' ? 'Full-time' : (j.contract_time || 'Full-time'),
@@ -248,7 +270,7 @@ function loadJobs(kw, loc) {
       adzunaCount = results[1].value.results.length;
     }
 
-    // Duplicate Job Filter engine
+    // Advanced Deduplication Logic engine
     var seenKeys = {};
     var uniqueJobs = [];
     rawJobs.forEach(function(job) {
@@ -262,13 +284,13 @@ function loadJobs(kw, loc) {
     allJobs = uniqueJobs;
 
     if (status) {
-      status.textContent = 'Reed: ' + reedCount + ' · Adzuna: ' + adzunaCount + ' — ' + allJobs.length + ' unique jobs listed';
+      status.textContent = 'Displaying ' + allJobs.length + ' real-time options across the UK';
     }
 
     updateCategoryCounts();
     showJobs(currentFilter);
   }).catch(function() {
-    list.innerHTML = '<div class="loading">Could not connect to server. Please refresh.</div>';
+    list.innerHTML = '<div class="loading">Could not process job data feed. Please try searching again.</div>';
   });
 }
 
@@ -281,7 +303,7 @@ function showJobs(filter) {
   }
 
   if (filtered.length === 0) {
-    list.innerHTML = '<div class="loading">No jobs listed inside this category currently. Try searching another role up above!</div>';
+    list.innerHTML = '<div class="loading">No listings match this specific category filter. Try searching a wider keyword matching phrase up above!</div>';
     return;
   }
 
