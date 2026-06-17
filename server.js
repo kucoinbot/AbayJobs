@@ -27,7 +27,7 @@ function fetchJSON(url, headers = {}, timeoutMs = 15000) {
         try { 
           resolve(JSON.parse(body)); 
         } catch(e) { 
-          reject(new Error(`Status: ${res.statusCode}`)); 
+          reject(new Error(`Invalid JSON. Status: ${res.statusCode}`)); 
         }
       });
     });
@@ -43,35 +43,24 @@ app.get('/health', (req, res) => {
   res.json({ status: 'running', keys_present: { reed: !!REED_KEY, adzuna_id: !!ADZUNA_APP_ID, adzuna_key: !!ADZUNA_APP_KEY } });
 });
 
-// UNRESTRICTED REED FEED
 app.get('/api/reed', async (req, res) => {
-  const keywords = req.query.keywords || 'warehouse';
+  const keywords = req.query.keywords || '';
   const location = req.query.location || '';
-  
-  // Requests the maximum allowed limit of 100 live results per pool page
-  const params = new URLSearchParams({ 
-    keywords: keywords, 
-    locationName: location, 
-    resultsToTake: '100' 
-  });
-  
+  const params = new URLSearchParams({ keywords, locationName: location, resultsToTake: '100' });
   const url = `https://www.reed.co.uk/api/1.0/search?${params}`;
   const auth = Buffer.from(`${REED_KEY}:`).toString('base64');
   
   try {
-    const data = await fetchJSON(url, { 'Authorization': `Basic ${auth}`, 'User-Agent': 'HaqqJobs/1.0' });
+    const data = await fetchJSON(url, { 'Authorization': `Basic ${auth}`, 'User-Agent': 'AbayJobs/1.0' });
     res.json(data);
   } catch(e) {
     res.status(500).json({ results: [], error: e.message });
   }
 });
 
-// UNRESTRICTED ADZUNA FEED
 app.get('/api/adzuna', async (req, res) => {
-  const keywords = req.query.keywords || 'warehouse';
+  const keywords = req.query.keywords || '';
   const location = req.query.location || '';
-  
-  // Pulls a massive 100 job load window, expanding lookup frame to 30 days old to display all live active vacancies
   const params = new URLSearchParams({ 
     app_id: ADZUNA_APP_ID, 
     app_key: ADZUNA_APP_KEY, 
@@ -80,11 +69,10 @@ app.get('/api/adzuna', async (req, res) => {
     where: location,
     max_days_old: '30'
   });
-  
   const url = `https://api.adzuna.com/v1/api/jobs/gb/search/1?${params}`;
   
   try {
-    const data = await fetchJSON(url, { 'User-Agent': 'HaqqJobs/1.0' });
+    const data = await fetchJSON(url, { 'User-Agent': 'AbayJobs/1.0' });
     res.json(data);
   } catch(e) {
     res.status(500).json({ results: [], error: e.message });
@@ -95,4 +83,4 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT, () => console.log(`Server live on port ${PORT}`));
+app.listen(PORT, () => console.log(`AbayJobs Server live on port ${PORT}`));
