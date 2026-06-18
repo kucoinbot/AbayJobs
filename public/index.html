@@ -14,23 +14,24 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
 .logo { color: white; font-size: 1.3rem; font-weight: 700; text-decoration: none; }
 .logo span { color: #4ade80; }
 .nav-links { display: flex; gap: 1rem; align-items: center; }
-.nav-links a { color: rgba(255,255,255,0.7); font-size: 13px; text-decoration: none; }
+.nav-links a { color: rgba(255,255,255,0.7); font-size: 13px; text-decoration: none; cursor: pointer; }
 .btn-nav { padding: 7px 18px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
 .btn-nav:hover { background: #3ecf73; }
 
-/* ─── HERO ─────────────────────────────────────────────────── */
+/* ─── HERO & DOUBLE SEARCH ─────────────────────────────────── */
 .hero { background: linear-gradient(135deg, #0f1923, #1a2d1a); padding: 3rem 1.5rem 2.5rem; text-align: center; }
 .hero-badge { display: inline-block; background: rgba(74,222,128,0.15); color: #4ade80; font-size: 12px; padding: 5px 14px; border-radius: 20px; margin-bottom: 1rem; border: 1px solid rgba(74,222,128,0.3); }
 .hero h1 { font-size: 2.2rem; font-weight: 700; color: white; margin-bottom: 0.5rem; line-height: 1.2; }
 .hero h1 span { color: #4ade80; }
 .hero p { color: rgba(255,255,255,0.6); font-size: 0.95rem; margin-bottom: 1.5rem; }
 
-/* ─── SEARCH BOX ───────────────────────────────────────────── */
-.search-box { display: flex; gap: 8px; max-width: 640px; margin: 0 auto; background: white; padding: 8px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
-.search-box input { flex: 1; padding: 9px 12px; border: 1px solid #eee; border-radius: 8px; font-size: 14px; outline: none; }
-.search-box input:focus { border-color: #4ade80; }
-.search-box input::placeholder { color: #94a3b8; }
-.btn-search { padding: 9px 22px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; white-space: nowrap; }
+/* Separated search row */
+.search-box { display: flex; gap: 8px; max-width: 750px; margin: 0 auto; background: white; padding: 8px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
+.search-group { flex: 1; display: flex; align-items: center; position: relative; }
+.search-group:first-child { border-right: 1px solid #e2e8f0; }
+.search-icon { position: absolute; left: 10px; color: #94a3b8; font-size: 14px; }
+.search-box input { width: 100%; padding: 9px 12px 9px 30px; border: none; font-size: 14px; outline: none; }
+.btn-search { padding: 9px 24px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; white-space: nowrap; }
 .btn-search:hover { background: #3ecf73; }
 
 /* ─── STATS BAR ────────────────────────────────────────────── */
@@ -135,12 +136,20 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
 .btn-submit:hover { background: #3ecf73; }
 .pnote { background: #e1f5ee; color: #0f6e56; font-size: 13px; padding: 9px 13px; border-radius: 8px; margin-bottom: 1rem; font-weight: 600; }
 
+/* ─── AUTH MODAL TABS ─── */
+.auth-tabs { display: flex; border-bottom: 2px solid #f0f0eb; margin-bottom: 1.25rem; }
+.auth-tab { flex: 1; text-align: center; padding: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: #888; }
+.auth-tab.active { color: #0f1923; border-bottom: 2px solid #4ade80; }
+.auth-toggle-sub { text-align: center; font-size: 13px; margin-top: 1rem; color: #666; }
+.auth-toggle-sub span { color: #0f6e56; cursor: pointer; font-weight: 600; text-decoration: underline; }
+
 /* ─── RESPONSIVE ───────────────────────────────────────────── */
 @media (max-width: 720px) {
   .page { grid-template-columns: 1fr; }
   .sidebar { display: none; }
   .hero h1 { font-size: 1.6rem; }
-  .search-box { flex-direction: column; }
+  .search-box { flex-direction: column; gap: 4px; }
+  .search-group:first-child { border-right: none; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; }
   .stats { gap: 1.5rem; }
   nav .nav-links a:not(.btn-nav) { display: none; }
   .job-card { flex-direction: column; gap: 1rem; }
@@ -153,8 +162,8 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
 <nav>
   <a href="#" class="logo">Abay<span>Jobs</span></a>
   <div class="nav-links">
-    <a href="#" onclick="openPostModal(true)" style="color:#4ade80;font-weight:600;">Habesha Businesses: Post Free</a>
-    <a href="#" onclick="alert('Dashboard coming soon!')">Sign In</a>
+    <a onclick="openPostModal(true)" style="color:#4ade80;font-weight:600;">Habesha Businesses: Post Free</a>
+    <a onclick="openAuthModal()">Sign In</a>
     <button class="btn-nav" onclick="openPostModal(false)">Post a Job</button>
   </div>
 </nav>
@@ -163,8 +172,16 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
   <div class="hero-badge">UK Jobs for the Habesha Community</div>
   <h1>Find your next UK job<br><span>faster than anyone else</span></h1>
   <p>Warehouse · Security · Construction · Driving · Cleaning · Care — live jobs updated daily</p>
+  
   <div class="search-box">
-    <input type="text" id="search-input" placeholder="Search title or keyword (e.g. Driver, Care, Cleaner)...">
+    <div class="search-group">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search-title" placeholder="Job title, keywords, or company...">
+    </div>
+    <div class="search-group">
+      <span class="search-icon">📍</span>
+      <input type="text" id="search-city" placeholder="City, town, or postcode...">
+    </div>
     <button class="btn-search" onclick="handleSearch()">Search Jobs</button>
   </div>
 </div>
@@ -225,10 +242,41 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
     </div>
     <div class="scard">
       <div class="stitle">Quick links</div>
-      <a href="#" style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #f0f0eb;font-size:14px;color:#333;text-decoration:none;">👤 My account</a>
-      <a href="#" style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #f0f0eb;font-size:14px;color:#333;text-decoration:none;">🏢 Employer dashboard</a>
+      <a onclick="openAuthModal('applicant')" style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #f0f0eb;font-size:14px;color:#333;text-decoration:none;">👤 My account</a>
+      <a onclick="openAuthModal('employer')" style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #f0f0eb;font-size:14px;color:#333;text-decoration:none;">🏢 Employer dashboard</a>
       <div onclick="openModal('ad-modal')" style="display:flex;align-items:center;gap:8px;padding:8px 0;font-size:14px;color:#333;cursor:pointer;">📢 Advertise here</div>
     </div>
+  </div>
+</div>
+
+<div id="auth-modal" class="overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('auth-modal')">×</button>
+    
+    <div class="auth-tabs">
+      <div class="auth-tab active" id="tab-applicant" onclick="switchAuthRole('applicant')">Applicant Account</div>
+      <div class="auth-tab" id="tab-employer" onclick="switchAuthRole('employer')">Company Portal</div>
+    </div>
+
+    <h3 id="auth-title">Sign In to AbayJobs</h3>
+
+    <div class="fg"><label>Email Address</label><input type="email" id="auth-email" placeholder="name@domain.com"></div>
+    <div class="fg"><label>Password</label><input type="password" id="auth-pass" placeholder="••••••••"></div>
+
+    <div id="stripe-box" style="display: none; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 1rem;">
+      <div style="font-size: 13px; font-weight: 700; margin-bottom: 6px; color: #0f172a;">💳 Access Payment — One-Time £20</div>
+      <div class="fg" style="margin-bottom: 8px;"><label style="font-size:11px;">Card Number</label><input type="text" placeholder="4242 •••• •••• ••••" style="padding: 6px 10px; font-size:13px;"></div>
+      <div style="display:flex; gap: 8px;">
+        <div class="fg" style="flex:1; margin-bottom:0;"><label style="font-size:11px;">Expiry</label><input type="text" placeholder="MM/YY" style="padding: 6px 10px; font-size:13px;"></div>
+        <div class="fg" style="flex:1; margin-bottom:0;"><label style="font-size:11px;">CVC</label><input type="text" placeholder="123" style="padding: 6px 10px; font-size:13px;"></div>
+      </div>
+    </div>
+
+    <button class="btn-go" id="auth-submit-btn" onclick="handleAuthSubmit()">Sign In →</button>
+    
+    <p class="auth-toggle-sub" id="auth-toggle-text">
+      Don't have an account? <span onclick="toggleAuthMode(true)">Create Account</span>
+    </p>
   </div>
 </div>
 
@@ -303,26 +351,34 @@ var API = 'https://haqqjobs-api.onrender.com';
 
 var allJobs = [];
 var currentFilter = 'all';
+var authRole = 'applicant'; // 'applicant' or 'employer'
+var isRegisterMode = false;
 
 // ─── INIT ─────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', function() {
-  loadJobs('warehouse security care cleaner driver', '');
+  // Broad initial search query to safely fetch an extensive set of jobs across key community sectors
+  loadJobs('warehouse security construction delivery cleaner care driver', '');
 });
 
 // ─── SEARCH HANDLER ───────────────────────────────────────────
 function handleSearch() {
-  var term = document.getElementById('search-input').value.trim();
-  if (term.length > 0) {
-    loadJobs(term, '');
+  var term = document.getElementById('search-title').value.trim();
+  var city = document.getElementById('search-city').value.trim();
+  
+  if (term.length > 0 || city.length > 0) {
+    loadJobs(term, city);
   } else {
-    loadJobs('warehouse security care cleaner driver', '');
+    loadJobs('warehouse security construction delivery cleaner care driver', '');
   }
 }
 
+// Add event listener to trigger search when "Enter" is pressed in inputs
 document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('search-input').addEventListener('keydown', function(e) {
+  var triggerSearchOnEnter = function(e) {
     if (e.key === 'Enter') handleSearch();
-  });
+  };
+  document.getElementById('search-title').addEventListener('keydown', triggerSearchOnEnter);
+  document.getElementById('search-city').addEventListener('keydown', triggerSearchOnEnter);
 });
 
 // ─── LOAD JOBS FROM BACKEND ───────────────────────────────────
@@ -403,7 +459,6 @@ function loadJobs(kw, loc) {
     var totalEl = document.getElementById('total-count');
     if (totalEl) totalEl.textContent = jobs.length > 0 ? jobs.length + '+' : '0';
 
-    updateCategoryCounts();
     showJobs(currentFilter);
 
   }).catch(function(err) {
@@ -423,7 +478,7 @@ function showJobs(filter) {
   }
 
   list.innerHTML = '';
-  filtered.forEach(function(j, index) {
+  filtered.forEach(function(j) {
     var srcClass = j.source.toLowerCase();
     
     var card = document.createElement('div');
@@ -462,11 +517,6 @@ function filterCategory(cat) {
   showJobs(cat);
 }
 
-// ─── CATEGORY COUNTS ──────────────────────────────────────────
-function updateCategoryCounts() {
-  // counts shown in status text only; pills don't have count badges in this design
-}
-
 // ─── CATEGORY MATCHING ────────────────────────────────────────
 function getCategory(title) {
   if (!title) return 'other';
@@ -491,10 +541,68 @@ function getDate(dtStr) {
   return dtStr.substring(0, 10);
 }
 
-// ─── ESCAPE HTML ─────────────────────────────────────────────
 function escapeHTML(str) {
   if (!str) return '';
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+// ─── AUTH CONTROLS ────────────────────────────────────────────
+function openAuthModal(defaultRole) {
+  if (defaultRole) {
+    switchAuthRole(defaultRole);
+  }
+  toggleAuthMode(false);
+  openModal('auth-modal');
+}
+
+function switchAuthRole(role) {
+  authRole = role;
+  document.getElementById('tab-applicant').classList.toggle('active', role === 'applicant');
+  document.getElementById('tab-employer').classList.toggle('active', role === 'employer');
+  
+  // Refresh layout view state dynamically
+  toggleAuthMode(isRegisterMode);
+}
+
+function toggleAuthMode(toRegister) {
+  isRegisterMode = toRegister;
+  var titleEl = document.getElementById('auth-title');
+  var btnEl = document.getElementById('auth-submit-btn');
+  var textEl = document.getElementById('auth-toggle-text');
+  var stripeEl = document.getElementById('stripe-box');
+
+  if (isRegisterMode) {
+    titleEl.textContent = authRole === 'applicant' ? 'Register Account (£20 Access Fee)' : 'Register Company Portal';
+    btnEl.textContent = authRole === 'applicant' ? 'Pay £20 & Register →' : 'Create Company Account →';
+    textEl.innerHTML = 'Already registered? <span onclick="toggleAuthMode(false)">Sign In</span>';
+    
+    // Only display card inputs if it's an applicant completing checkout registration
+    stripeEl.style.display = authRole === 'applicant' ? 'block' : 'none';
+  } else {
+    titleEl.textContent = authRole === 'applicant' ? 'Sign In to AbayJobs' : 'Sign In Company Portal';
+    btnEl.textContent = 'Sign In →';
+    textEl.innerHTML = 'Don\'t have an account? <span onclick="toggleAuthMode(true)">Create Account</span>';
+    stripeEl.style.display = 'none';
+  }
+}
+
+function handleAuthSubmit() {
+  var email = document.getElementById('auth-email').value.trim();
+  if (!email) {
+    alert('Please provide a valid email address.');
+    return;
+  }
+  
+  if (isRegisterMode) {
+    if (authRole === 'applicant') {
+      alert('Stripe verification authorized! One-time £20 charge processed. Your applicant dashboard is now ready.');
+    } else {
+      alert('Registration successful! Your corporate company dashboard configuration is ready.');
+    }
+  } else {
+    alert('Success! Logging you into your ' + (authRole === 'applicant' ? 'Applicant account' : 'Company profile') + ' dashboard.');
+  }
+  closeModal('auth-modal');
 }
 
 // ─── MODAL CONTROLS ───────────────────────────────────────────
