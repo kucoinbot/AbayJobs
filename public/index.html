@@ -5,210 +5,173 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HaqqJobs — UK Jobs for the Habesha Community</title>
 <style>
+/* ─── RESET & BASE ─────────────────────────────────────────── */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0b0f17; color: #f3f4f6; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f0; color: #1a1a1a; }
 
-nav { background: #111827; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; height: 58px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #1f2937; }
+/* ─── NAV ──────────────────────────────────────────────────── */
+nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; height: 58px; position: sticky; top: 0; z-index: 100; }
 .logo { color: white; font-size: 1.3rem; font-weight: 700; text-decoration: none; }
 .logo span { color: #4ade80; }
 .nav-links { display: flex; gap: 1rem; align-items: center; }
-.nav-links a { color: #9ca3af; font-size: 13px; text-decoration: none; transition: color 0.2s; }
-.nav-links a:hover { color: white; }
-.btn-nav { padding: 7px 18px; background: #4ade80; color: #0b0f17; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+.nav-links a { color: rgba(255,255,255,0.7); font-size: 13px; text-decoration: none; }
+.btn-nav { padding: 7px 18px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
 .btn-nav:hover { background: #3ecf73; }
 
-.hero { background: radial-gradient(circle at top, #1e293b 0%, #0b0f17 100%); padding: 3rem 1.5rem 2.5rem; text-align: center; border-bottom: 1px solid #1f2937; }
-.hero-badge { display: inline-block; background: rgba(74,222,128,0.1); color: #4ade80; font-size: 12px; padding: 5px 14px; border-radius: 20px; margin-bottom: 1rem; border: 1px solid rgba(74,222,128,0.25); }
-.hero h1 { font-size: 2.2rem; font-weight: 700; color: white; margin-bottom: 0.5rem; line-height: 1.2; letter-spacing: -0.5px; }
+/* ─── HERO ─────────────────────────────────────────────────── */
+.hero { background: linear-gradient(135deg, #0f1923, #1a2d1a); padding: 3rem 1.5rem 2.5rem; text-align: center; }
+.hero-badge { display: inline-block; background: rgba(74,222,128,0.15); color: #4ade80; font-size: 12px; padding: 5px 14px; border-radius: 20px; margin-bottom: 1rem; border: 1px solid rgba(74,222,128,0.3); }
+.hero h1 { font-size: 2.2rem; font-weight: 700; color: white; margin-bottom: 0.5rem; line-height: 1.2; }
 .hero h1 span { color: #4ade80; }
-.hero p { color: #9ca3af; font-size: 0.95rem; margin-bottom: 1.5rem; }
+.hero p { color: rgba(255,255,255,0.6); font-size: 0.95rem; margin-bottom: 1.5rem; }
 
-.search-box { display: flex; gap: 8px; max-width: 640px; margin: 0 auto; background: #111827; padding: 8px; border-radius: 12px; flex-wrap: wrap; border: 1px solid #374151; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
-.search-box select { flex: 1; min-width: 150px; padding: 9px 12px; border: 1px solid #1f2937; border-radius: 8px; font-size: 14px; outline: none; background: #0b0f17; color: white; }
-.search-box input { flex: 1; min-width: 120px; padding: 9px 12px; border: 1px solid #1f2937; border-radius: 8px; font-size: 14px; outline: none; background: #0b0f17; color: white; }
-.search-box input::placeholder { color: #6b7280; }
-.search-box input:focus, .search-box select:focus { border-color: #4ade80; }
-.btn-search { padding: 9px 22px; background: #4ade80; color: #0b0f17; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; transition: background 0.2s; }
+/* ─── SEARCH BOX ───────────────────────────────────────────── */
+.search-box { display: flex; gap: 8px; max-width: 640px; margin: 0 auto; background: white; padding: 8px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
+.search-box input { flex: 1; padding: 9px 12px; border: 1px solid #eee; border-radius: 8px; font-size: 14px; outline: none; }
+.search-box input:focus { border-color: #4ade80; }
+.search-box input::placeholder { color: #94a3b8; }
+.btn-search { padding: 9px 22px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; white-space: nowrap; }
 .btn-search:hover { background: #3ecf73; }
 
-.stats { background: #090d14; display: flex; justify-content: center; gap: 3rem; padding: 1rem 2rem; flex-wrap: wrap; border-bottom: 1px solid #1f2937; }
+/* ─── STATS BAR ────────────────────────────────────────────── */
+.stats { background: #0a1410; display: flex; justify-content: center; gap: 3rem; padding: 1rem 2rem; flex-wrap: wrap; }
 .stat-num { font-size: 1.1rem; font-weight: 700; color: #4ade80; text-align: center; }
-.stat-lbl { font-size: 10px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; text-align: center; margin-top: 2px; }
+.stat-lbl { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; text-align: center; margin-top: 2px; }
 
-/* HORIZONTAL AD BAR */
-.ad-bar { background: #0b0f17; border-bottom: 1px solid #1f2937; padding: 0.8rem 1.5rem; text-align: center; }
-.ad-inner { background: linear-gradient(135deg, #111827, #1f2937); border-radius: 10px; padding: 1rem 1.5rem; display: inline-flex; align-items: center; gap: 1.5rem; max-width: 740px; width: 100%; justify-content: space-between; border: 1px solid #374151; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-.ad-text { text-align: left; }
+/* ─── AD BAR ───────────────────────────────────────────────── */
+.ad-bar { background: white; border-bottom: 1px solid #e5e5e0; padding: 0.6rem 1.5rem; text-align: center; }
+.ad-inner { background: linear-gradient(135deg, #1a1a2e, #16213e); border-radius: 10px; padding: 1rem 1.5rem; display: inline-flex; align-items: center; gap: 1.5rem; max-width: 740px; width: 100%; justify-content: space-between; }
 .ad-text strong { color: white; display: block; font-size: 14px; margin-bottom: 2px; }
-.ad-text span { color: #9ca3af; font-size: 12px; }
-.btn-ad { padding: 8px 18px; background: #4ade80; color: #0b0f17; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
-.btn-ad:hover { background: #3ecf73; }
+.ad-text span { color: rgba(255,255,255,0.6); font-size: 12px; }
+.btn-ad { padding: 8px 18px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; }
 
+/* ─── PAGE LAYOUT ──────────────────────────────────────────── */
 .page { max-width: 1080px; margin: 0 auto; padding: 1.5rem; display: grid; grid-template-columns: 1fr 260px; gap: 1.5rem; }
 
-.tabs { display: flex; border-bottom: 2px solid #1f2937; margin-bottom: 1.25rem; }
-.tab { padding: 9px 18px; font-size: 14px; cursor: pointer; color: #6b7280; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.2s; }
-.tab:hover { color: white; }
-.tab.active { color: white; font-weight: 600; border-bottom-color: #4ade80; }
-
+/* ─── FILTER PILLS ─────────────────────────────────────────── */
 .filters { display: flex; gap: 6px; margin-bottom: 1.25rem; flex-wrap: wrap; align-items: center; }
-.fpill { padding: 6px 14px; border-radius: 20px; border: 1px solid #1f2937; background: #111827; font-size: 13px; cursor: pointer; color: #9ca3af; transition: all 0.2s; }
-.fpill:hover { color: white; border-color: #374151; }
-.fpill.active { background: #4ade80; color: #0b0f17; border-color: #4ade80; font-weight: 600; }
-.status-txt { font-size: 11px; color: #6b7280; margin-left: auto; }
+.fpill { padding: 6px 14px; border-radius: 20px; border: 1px solid #ddd; background: white; font-size: 13px; cursor: pointer; color: #555; }
+.fpill.active { background: #0f1923; color: white; border-color: #0f1923; }
+.status-txt { font-size: 11px; color: #aaa; margin-left: auto; }
 
+/* ─── HABESHA PROMO PANEL ──────────────────────────────────── */
+.habesha-hero { background: linear-gradient(135deg,#0f1923,#1a3a1a); border-radius: 12px; padding: 1.25rem; margin-bottom: 1.25rem; color: white; }
+.habesha-hero h3 { font-size: 15px; margin-bottom: 6px; }
+.habesha-hero p { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 1rem; }
+.btn-green { padding: 8px 18px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 13px; }
+
+/* ─── JOBS LIST ────────────────────────────────────────────── */
 .jobs { display: flex; flex-direction: column; gap: 10px; }
 
-/* JOB CARDS */
-.job-card { background: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 1.1rem; display: flex; gap: 12px; transition: border-color 0.15s, transform 0.15s; }
+/* ─── JOB CARD ─────────────────────────────────────────────── */
+.job-card { background: white; border: 1px solid #e8e8e3; border-radius: 12px; padding: 1.1rem; display: flex; justify-content: space-between; align-items: flex-start; cursor: pointer; transition: border-color 0.15s, transform 0.15s; gap: 12px; }
 .job-card:hover { border-color: #4ade80; transform: translateY(-1px); }
-.jlogo { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: white; flex-shrink: 0; }
-.jbody { flex: 1; }
-.jrow { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
-.jtitle { font-size: 15px; font-weight: 600; margin-bottom: 3px; color: white; }
-.jcompany { font-size: 13px; color: #9ca3af; margin-bottom: 7px; }
-.jtags { display: flex; gap: 5px; flex-wrap: wrap; }
-.tag { font-size: 11px; padding: 2px 9px; border-radius: 10px; font-weight: 500; }
-.tag-warehouse { background: rgba(15, 110, 86, 0.2); color: #4ade80; }
-.tag-security { background: rgba(24, 95, 165, 0.2); color: #60a5fa; }
-.tag-construction { background: rgba(133, 79, 11, 0.2); color: #f59e0b; }
-.tag-driving { background: rgba(153, 53, 86, 0.2); color: #f472b6; }
-.tag-cleaning { background: rgba(91, 53, 213, 0.2); color: #a78bfa; }
-.tag-care { background: rgba(204, 51, 51, 0.2); color: #f87171; }
-.tag-other { background: #1f2937; color: #9ca3af; }
-.tag-src { background: #1f2937; color: #9ca3af; font-size: 10px; }
-.tag-ok { background: rgba(138, 96, 0, 0.2); color: #fbbf24; font-size: 10px; }
-.jright { text-align: right; flex-shrink: 0; }
-.jsalary { font-size: 15px; font-weight: 700; color: #4ade80; }
-.jtype { font-size: 11px; color: #888; margin-top: 1px; }
-.btn-apply { margin-top: 8px; padding: 7px 16px; background: #1f2937; color: white; border: 1px solid #374151; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: block; width: 100%; transition: all 0.2s; }
-.job-card:hover .btn-apply { background: #4ade80; color: #0b0f17; border-color: #4ade80; }
-.jdate { font-size: 11px; color: #6b7280; margin-top: 4px; }
+.job-main { flex: 1; }
+.job-badge { display: inline-block; padding: 3px 9px; background: #f5f5f0; color: #666; font-size: 11px; font-weight: 600; border-radius: 10px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.3px; }
+.job-badge.warehouse { background: #e1f5ee; color: #0f6e56; }
+.job-badge.security { background: #e6f1fb; color: #185fa5; }
+.job-badge.driver { background: #fbeaf0; color: #993556; }
+.job-badge.cleaning { background: #f1effe; color: #5b35d5; }
+.job-badge.care { background: #fff0f0; color: #cc3333; }
+.job-badge.other { background: #f5f5f0; color: #666; }
+.job-badge.reed { background: #eff6ff; color: #1e40af; }
+.job-badge.adzuna { background: #fdf2f8; color: #9d174d; }
+.job-title { font-size: 15px; font-weight: 600; color: #0f172a; margin-bottom: 4px; line-height: 1.3; }
+.job-company { font-size: 13px; color: #666; margin-bottom: 10px; font-weight: 500; }
+.job-meta { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; color: #64748b; }
+.meta-item { display: flex; align-items: center; gap: 4px; }
+.job-side { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex-shrink: 0; }
+.source-tag { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; background: #f5f5f0; color: #888; border: 1px solid #e8e8e3; }
+.source-tag.reed { background: #eff6ff; color: #1e40af; border-color: #bfdbfe; }
+.source-tag.adzuna { background: #fdf2f8; color: #9d174d; border-color: #fbcfe8; }
+.btn-apply-card { padding: 7px 16px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
+.btn-apply-card:hover { background: #3ecf73; }
+.jdate { font-size: 11px; color: #aaa; }
 
-.loading { text-align: center; padding: 3rem; color: #9ca3af; background: #111827; border-radius: 12px; border: 1px solid #1f2937; }
-.spinner { width: 30px; height: 30px; border: 3px solid #1f2937; border-top-color: #4ade80; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem; }
+/* ─── LOADING ──────────────────────────────────────────────── */
+.loading { text-align: center; padding: 3rem; color: #888; background: white; border-radius: 12px; border: 1px solid #e8e8e3; }
+.spinner { width: 30px; height: 30px; border: 3px solid #e5e5e0; border-top-color: #4ade80; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* SIDEBAR LAYOUT */
+/* ─── SIDEBAR ──────────────────────────────────────────────── */
 .sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
-.scard { background: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 1.25rem; }
-.scard a { transition: color 0.2s, border-color 0.2s; }
-.scard a:hover { color: #4ade80 !important; border-color: #374151 !important; }
-.stitle { font-size: 12px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem; }
-.ad-scard { background: #111827; border-radius: 12px; padding: 1.25rem; color: white; text-align: center; border: 1px solid #1f2937; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+.scard { background: white; border: 1px solid #e8e8e3; border-radius: 12px; padding: 1.25rem; }
+.stitle { font-size: 12px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem; }
+.ad-scard { background: #0f1923; border-radius: 12px; padding: 1.25rem; color: white; text-align: center; }
 .ad-scard h4 { font-size: 14px; font-weight: 700; color: #4ade80; margin-bottom: 6px; }
-.ad-scard p { font-size: 12px; color: #9ca3af; margin-bottom: 1rem; line-height: 1.5; }
-.btn-adv { width: 100%; padding: 9px; background: #1f2937; color: white; border: 1px solid #374151; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-.btn-adv:hover { background: #4ade80; color: #0b0f17; border-color: #4ade80; }
-.hire-card { background: linear-gradient(135deg, #111827, #142814); border-radius: 12px; padding: 1.25rem; color: white; text-align: center; border: 1px solid rgba(74, 222, 128, 0.2); }
+.ad-scard p { font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 1rem; line-height: 1.5; }
+.btn-adv { width: 100%; padding: 9px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.hire-card { background: linear-gradient(135deg, #0f1923, #1a3a1a); border-radius: 12px; padding: 1.25rem; color: white; text-align: center; }
 .hire-card h4 { font-size: 14px; margin-bottom: 6px; }
-.hire-card p { font-size: 12px; color: #9ca3af; margin-bottom: 1rem; line-height: 1.5; }
-.btn-hire { width: 100%; padding: 9px; background: #4ade80; color: #0b0f17; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; margin-bottom: 6px; transition: background 0.2s; }
-.btn-hire:hover { background: #3ecf73; }
-.hire-note { font-size: 11px; color: #6b7280; }
+.hire-card p { font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 1rem; line-height: 1.5; }
+.btn-hire { width: 100%; padding: 9px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; margin-bottom: 6px; }
+.hire-note { font-size: 11px; color: rgba(255,255,255,0.4); }
 
-/* SYSTEM DIALOG POPUPS */
-.overlay { display: none; position: fixed; inset: 0; background: rgba(5, 7, 11, 0.8); backdrop-filter: blur(4px); z-index: 200; justify-content: center; align-items: center; padding: 1rem; }
+/* ─── MODALS ───────────────────────────────────────────────── */
+.overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(2px); z-index: 200; justify-content: center; align-items: center; padding: 1rem; }
 .overlay.open { display: flex; }
-.modal { background: #111827; border-radius: 16px; padding: 2rem; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; border: 1px solid #1f2937; color: white; }
-.modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; color: white; }
-.job-info-box { background: #0b0f17; border-radius: 8px; padding: 10px 14px; margin-bottom: 1.25rem; border: 1px solid #1f2937; }
-.job-info-box strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 3px; color: white; }
-.job-info-box span { font-size: 13px; color: #9ca3af; }
-.job-info-box .details { margin-top: 8px; font-size: 12px; color: #6b7280; line-height: 1.8; }
-.verify-box { background: rgba(15, 110, 86, 0.15); border-radius: 8px; padding: 10px 14px; margin-bottom: 1.25rem; font-size: 13px; color: #4ade80; line-height: 1.8; border: 1px solid rgba(74, 222, 128, 0.2); }
-.btn-go { display: block; width: 100%; padding: 13px; background: #4ade80; color: #0b0f17; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; text-decoration: none; text-align: center; margin-bottom: 10px; transition: background 0.2s; }
+.modal { background: white; border-radius: 16px; padding: 2rem; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2); }
+.modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 20px; color: #94a3b8; cursor: pointer; line-height: 1; }
+.modal-close:hover { color: #475569; }
+.modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
+.modal h2 { font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
+.job-info-box { background: #f5f5f0; border-radius: 8px; padding: 10px 14px; margin-bottom: 1.25rem; }
+.job-info-box strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.job-info-box span { font-size: 13px; color: #555; }
+.job-info-box .details { margin-top: 8px; font-size: 12px; color: #888; line-height: 1.8; background: #f8fafc; padding: 10px; border-radius: 6px; }
+.verify-box { background: #e1f5ee; border-radius: 8px; padding: 10px 14px; margin-bottom: 1.25rem; font-size: 13px; color: #0f6e56; line-height: 1.8; }
+.btn-go { display: block; width: 100%; padding: 13px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; text-decoration: none; text-align: center; margin-bottom: 10px; }
 .btn-go:hover { background: #3ecf73; }
-.btn-close { display: block; width: 100%; padding: 10px; background: #1f2937; color: #9ca3af; border: 1px solid #374151; border-radius: 10px; font-size: 14px; cursor: pointer; transition: background 0.2s; }
-.btn-close:hover { background: #374151; color: white; }
-.modal-note { font-size: 11px; color: #6b7280; text-align: center; margin-top: 10px; }
-
+.btn-close { display: block; width: 100%; padding: 10px; background: #f0f0eb; color: #555; border: none; border-radius: 10px; font-size: 14px; cursor: pointer; }
+.modal-note { font-size: 11px; color: #aaa; text-align: center; margin-top: 10px; }
 .fg { margin-bottom: 1rem; }
-.fg label { display: block; font-size: 13px; font-weight: 600; color: #9ca3af; margin-bottom: 5px; }
-.fg input, .fg select, .fg textarea { width: 100%; padding: 10px 13px; border: 1px solid #1f2937; border-radius: 8px; font-size: 14px; outline: none; font-family: inherit; background: #0b0f17; color: white; }
+.fg label { display: block; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 5px; }
+.fg input, .fg select, .fg textarea { width: 100%; padding: 10px 13px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; font-family: inherit; }
 .fg input:focus, .fg select:focus { border-color: #4ade80; }
 .fg textarea { resize: vertical; min-height: 80px; }
-.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .mfooter { display: flex; gap: 8px; margin-top: 1.25rem; }
-.btn-cancel { flex: 1; padding: 10px; border: 1px solid #374151; background: #1f2937; color: #9ca3af; border-radius: 8px; font-size: 14px; cursor: pointer; transition: background 0.2s; }
-.btn-cancel:hover { background: #374151; color: white; }
-.btn-submit { flex: 2; padding: 10px; background: #4ade80; color: #0b0f17; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.2s; }
+.btn-cancel { flex: 1; padding: 10px; border: 1px solid #ddd; background: white; border-radius: 8px; font-size: 14px; cursor: pointer; }
+.btn-submit { flex: 2; padding: 10px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; }
 .btn-submit:hover { background: #3ecf73; }
-.pnote { background: rgba(15, 110, 86, 0.15); color: #4ade80; font-size: 13px; padding: 9px 13px; border-radius: 8px; margin-bottom: 1rem; font-weight: 600; border: 1px solid rgba(74, 222, 128, 0.2); }
+.pnote { background: #e1f5ee; color: #0f6e56; font-size: 13px; padding: 9px 13px; border-radius: 8px; margin-bottom: 1rem; font-weight: 600; }
 
-.habesha-hero { background: linear-gradient(135deg,#111827,#162e16); border-radius: 12px; padding: 1.25rem; margin-bottom: 1.25rem; color: white; border: 1px solid rgba(74, 222, 128, 0.15); }
-.habesha-hero h3 { font-size: 15px; margin-bottom: 6px; }
-.habesha-hero p { font-size: 13px; color: #9ca3af; margin-bottom: 1rem; }
-.btn-green { padding: 8px 18px; background: #4ade80; color: #0b0f17; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 13px; transition: background 0.2s; }
-.btn-green:hover { background: #3ecf73; }
-
+/* ─── RESPONSIVE ───────────────────────────────────────────── */
 @media (max-width: 720px) {
   .page { grid-template-columns: 1fr; }
   .sidebar { display: none; }
   .hero h1 { font-size: 1.6rem; }
   .search-box { flex-direction: column; }
   .stats { gap: 1.5rem; }
-  nav .nav-links a { display: none; }
-  .frow { grid-template-columns: 1fr; }
+  nav .nav-links a:not(.btn-nav) { display: none; }
+  .job-card { flex-direction: column; gap: 1rem; }
+  .job-side { width: 100%; flex-direction: row; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 10px; }
 }
 </style>
 </head>
 <body>
 
+<!-- ─── NAV ──────────────────────────────────────────────── -->
 <nav>
-  <a href="/" class="logo">Haqq<span>Jobs</span></a>
+  <a href="#" class="logo">Haqq<span>Jobs</span></a>
   <div class="nav-links">
-    <a href="#">Browse jobs</a>
-    <a href="#" onclick="openModal('post-modal')">Post a job</a>
-    <a href="#" onclick="openModal('ad-modal')">Advertise</a>
-    <a href="jobseeker_dashboard.html" class="btn-nav">My account</a>
+    <a href="#" onclick="openPostModal(true)" style="color:#4ade80;font-weight:600;">Habesha Businesses: Post Free</a>
+    <a href="#" onclick="alert('Dashboard coming soon!')">Sign In</a>
+    <button class="btn-nav" onclick="openPostModal(false)">Post a Job</button>
   </div>
 </nav>
 
+<!-- ─── HERO ──────────────────────────────────────────────── -->
 <div class="hero">
   <div class="hero-badge">UK Jobs for the Habesha Community</div>
   <h1>Find your next UK job<br><span>faster than anyone else</span></h1>
   <p>Warehouse · Security · Construction · Driving · Cleaning · Care — live jobs updated daily</p>
   <div class="search-box">
-    <select id="kw-select">
-      <option value="">All job types</option>
-      <optgroup label="Warehouse">
-        <option value="warehouse operative">Warehouse Operative</option>
-        <option value="amazon warehouse">Amazon Warehouse</option>
-        <option value="picker packer">Picker & Packer</option>
-        <option value="forklift operator">Forklift Operator</option>
-        <option value="night shift warehouse">Night Shift Warehouse</option>
-      </optgroup>
-      <optgroup label="Security">
-        <option value="security officer">Security Officer</option>
-        <option value="door supervisor">Door Supervisor</option>
-        <option value="security guard">Security Guard</option>
-      </optgroup>
-      <optgroup label="Construction">
-        <option value="construction labourer">Construction Labourer</option>
-        <option value="groundworker">Groundworker</option>
-        <option value="scaffolder">Scaffolder</option>
-      </optgroup>
-      <optgroup label="Driving">
-        <option value="van driver">Van Driver</option>
-        <option value="delivery driver">Delivery Driver</option>
-        <option value="hgv driver">HGV Driver</option>
-      </optgroup>
-      <optgroup label="Cleaning">
-        <option value="cleaning operative">Cleaning Operative</option>
-        <option value="office cleaner">Office Cleaner</option>
-      </optgroup>
-      <optgroup label="Care">
-        <option value="care assistant">Care Assistant</option>
-        <option value="support worker">Support Worker</option>
-        <option value="healthcare assistant">Healthcare Assistant</option>
-      </optgroup>
-    </select>
-    <input type="text" id="pc-input" placeholder="Postcode e.g. E1, B12, S1..." maxlength="10" />
-    <button class="btn-search" onclick="doSearch()">Search jobs</button>
+    <input type="text" id="search-input" placeholder="Search title or keyword (e.g. Driver, Care, Cleaner)...">
+    <button class="btn-search" onclick="handleSearch()">Search Jobs</button>
   </div>
 </div>
 
+<!-- ─── STATS ─────────────────────────────────────────────── -->
 <div class="stats">
   <div><div class="stat-num" id="total-count">—</div><div class="stat-lbl">Live jobs</div></div>
   <div><div class="stat-num">UK Wide</div><div class="stat-lbl">All locations</div></div>
@@ -216,6 +179,7 @@ nav { background: #111827; padding: 0 1.5rem; display: flex; justify-content: sp
   <div><div class="stat-num">Free</div><div class="stat-lbl">To browse</div></div>
 </div>
 
+<!-- ─── AD BAR ────────────────────────────────────────────── -->
 <div class="ad-bar">
   <div class="ad-inner">
     <div class="ad-text">
@@ -226,39 +190,37 @@ nav { background: #111827; padding: 0 1.5rem; display: flex; justify-content: sp
   </div>
 </div>
 
+<!-- ─── MAIN PAGE ─────────────────────────────────────────── -->
 <div class="page">
+
+  <!-- LEFT: job feed -->
   <div>
-    <div class="tabs">
-      <div class="tab active" onclick="switchTab('main', this)">All UK jobs</div>
-      <div class="tab" onclick="switchTab('habesha', this)">Habesha businesses hiring</div>
+    <!-- Filter pills -->
+    <div class="filters">
+      <button class="fpill active" id="btn-all" onclick="filterCategory('all')">All</button>
+      <button class="fpill" id="btn-warehouse" onclick="filterCategory('warehouse')">Warehouse</button>
+      <button class="fpill" id="btn-security" onclick="filterCategory('security')">Security</button>
+      <button class="fpill" id="btn-care" onclick="filterCategory('care')">Care</button>
+      <button class="fpill" id="btn-cleaning" onclick="filterCategory('cleaning')">Cleaning</button>
+      <button class="fpill" id="btn-driver" onclick="filterCategory('driver')">Driving</button>
+      <button class="fpill" id="btn-other" onclick="filterCategory('other')">Other</button>
+      <span class="status-txt" id="status-txt">Connecting...</span>
     </div>
 
-    <div id="main-panel">
-      <div class="filters">
-        <button class="fpill active" onclick="filterBy('all', this)">All</button>
-        <button class="fpill" onclick="filterBy('warehouse', this)">Warehouse</button>
-        <button class="fpill" onclick="filterBy('security', this)">Security</button>
-        <button class="fpill" onclick="filterBy('construction', this)">Construction</button>
-        <button class="fpill" onclick="filterBy('driving', this)">Driving</button>
-        <button class="fpill" onclick="filterBy('cleaning', this)">Cleaning</button>
-        <button class="fpill" onclick="filterBy('care', this)">Care work</button>
-        <span class="status-txt" id="status-txt">Connecting...</span>
-      </div>
-      <div class="jobs" id="jobs-list">
-        <div class="loading"><div class="spinner"></div><p>Loading real UK jobs...</p><p style="font-size:12px;color:#aaa;margin-top:6px;">Please wait — may take up to 30 seconds</p></div>
-      </div>
+    <!-- Habesha promo (shown above feed) -->
+    <div class="habesha-hero">
+      <h3>🇪🇹 🇪🇷 Ethiopian & Eritrean businesses — post jobs to our community</h3>
+      <p>Restaurants, salons, shops and other Habesha businesses. First job post free for 30 days.</p>
+      <button class="btn-green" onclick="openPostModal(true)">Post your job — free for Habesha businesses</button>
     </div>
 
-    <div id="habesha-panel" style="display:none">
-      <div class="habesha-hero">
-        <h3>Ethiopian & Eritrean businesses — post jobs to our community</h3>
-        <p>Restaurants, salons, shops and other Habesha businesses. First job post free for 30 days.</p>
-        <button class="btn-green" onclick="openPostModal(true)">Post your job — free for Habesha businesses</button>
-      </div>
-      <div class="jobs" id="habesha-list"></div>
+    <!-- Job cards -->
+    <div id="jobs-list" class="jobs">
+      <div class="loading"><div class="spinner"></div><p>Loading real UK jobs...</p><p style="font-size:12px;color:#aaa;margin-top:6px;">Please wait — may take up to 30 seconds</p></div>
     </div>
   </div>
 
+  <!-- RIGHT: sidebar -->
   <div class="sidebar">
     <div class="ad-scard">
       <h4>Advertise your business</h4>
@@ -273,15 +235,17 @@ nav { background: #111827; padding: 0 1.5rem; display: flex; justify-content: sp
     </div>
     <div class="scard">
       <div class="stitle">Quick links</div>
-      <a href="jobseeker_dashboard.html" style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #1f2937;font-size:14px;color:#9ca3af;text-decoration:none;">👤 My account</a>
-      <a href="employer_dashboard.html" style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #1f2937;font-size:14px;color:#9ca3af;text-decoration:none;">🏢 Employer dashboard</a>
-      <div onclick="openModal('ad-modal')" style="display:flex;align-items:center;gap:8px;padding:8px 0;font-size:14px;color:#9ca3af;cursor:pointer;">📢 Advertise here</div>
+      <a href="#" style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #f0f0eb;font-size:14px;color:#333;text-decoration:none;">👤 My account</a>
+      <a href="#" style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #f0f0eb;font-size:14px;color:#333;text-decoration:none;">🏢 Employer dashboard</a>
+      <div onclick="openModal('ad-modal')" style="display:flex;align-items:center;gap:8px;padding:8px 0;font-size:14px;color:#333;cursor:pointer;">📢 Advertise here</div>
     </div>
   </div>
 </div>
 
-<div class="overlay" id="apply-modal">
+<!-- ─── APPLY MODAL ───────────────────────────────────────── -->
+<div id="apply-modal" class="overlay">
   <div class="modal">
+    <button class="modal-close" onclick="closeModal('apply-modal')">×</button>
     <h3 id="m-title">Job details</h3>
     <div class="job-info-box">
       <strong id="m-job-title"></strong>
@@ -299,54 +263,46 @@ nav { background: #111827; padding: 0 1.5rem; display: flex; justify-content: sp
   </div>
 </div>
 
-<div class="overlay" id="post-modal">
+<!-- ─── POST JOB MODAL ────────────────────────────────────── -->
+<div id="post-modal" class="overlay">
   <div class="modal">
+    <button class="modal-close" onclick="closeModal('post-modal')">×</button>
     <h3 id="post-title">Post a job on HaqqJobs</h3>
     <div class="pnote" id="post-note">£50 — listed for 30 days</div>
-    <div class="frow">
-      <div class="fg"><label>Company name</label><input type="text" placeholder="Your business name" /></div>
-      <div class="fg"><label>Contact email</label><input type="email" placeholder="your@email.com" /></div>
-    </div>
-    <div class="fg"><label>Job title</label><input type="text" placeholder="e.g. Kitchen Assistant" /></div>
-    <div class="frow">
-      <div class="fg"><label>Location</label><input type="text" placeholder="e.g. Sheffield" /></div>
-      <div class="fg"><label>Salary</label><input type="text" placeholder="e.g. £12.21/hr" /></div>
-    </div>
-    <div class="fg"><label>Job description</label><textarea placeholder="What will the person do? Hours? Experience?"></textarea></div>
-    <div class="frow">
-      <div class="fg"><label>Job type</label><select><option>Full-time</option><option>Part-time</option><option>Temporary</option></select></div>
-      <div class="fg"><label>Category</label><select><option>Warehouse</option><option>Security</option><option>Construction</option><option>Driving</option><option>Cleaning</option><option>Care</option><option>Restaurant</option><option>Other</option></select></div>
-    </div>
+    <div class="fg"><label>Job Title</label><input type="text" placeholder="e.g. Warehouse Operative, Security Officer"></div>
+    <div class="fg"><label>Company Name</label><input type="text" placeholder="e.g. Haqq Logistics Ltd"></div>
+    <div class="fg"><label>Location</label><input type="text" placeholder="e.g. Birmingham, London (South)"></div>
+    <div class="fg"><label>Salary Details</label><input type="text" placeholder="e.g. £12.50 / hour, £26,000 yearly"></div>
     <div class="mfooter">
       <button class="btn-cancel" onclick="closeModal('post-modal')">Cancel</button>
-      <button class="btn-submit" id="post-btn">Pay & post job →</button>
+      <button class="btn-submit" id="post-btn" onclick="alert('Submission received! Our team will manually approve it shortly.'); closeModal('post-modal');">Post Job →</button>
     </div>
   </div>
 </div>
 
+<!-- ─── ADVERTISE MODAL ───────────────────────────────────── -->
 <div class="overlay" id="ad-modal">
   <div class="modal">
+    <button class="modal-close" onclick="closeModal('ad-modal')">×</button>
     <h3>Advertise your business on HaqqJobs</h3>
     <p style="color:#666;font-size:13px;margin-bottom:1.25rem;">Reach thousands of Eritrean & Ethiopian people across the UK every month.</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem;">
-      <div style="border:1px solid #1f2937;border-radius:10px;padding:1rem;text-align:center;background:#0b0f17;">
-        <div style="font-weight:700;font-size:1.1rem;margin-bottom:4px;color:white;">£30/month</div>
-        <div style="font-size:13px;color:#9ca3af;margin-bottom:6px;">Sidebar listing</div>
-        <div style="font-size:12px;color:#6b7280;">Logo + name on every page</div>
+      <div style="border:1px solid #e8e8e3;border-radius:10px;padding:1rem;text-align:center;">
+        <div style="font-weight:700;font-size:1.1rem;margin-bottom:4px;">£30/month</div>
+        <div style="font-size:13px;color:#555;margin-bottom:6px;">Sidebar listing</div>
+        <div style="font-size:12px;color:#888;">Logo + name on every page</div>
       </div>
-      <div style="border:2px solid #4ade80;border-radius:10px;padding:1rem;text-align:center;background:#0b0f17;">
-        <div style="font-size:10px;background:#4ade80;color:#0b0f17;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:6px;font-weight:600;">BEST VALUE</div>
-        <div style="font-weight:700;font-size:1.1rem;margin-bottom:4px;color:white;">£70/month</div>
-        <div style="font-size:13px;color:#9ca3af;margin-bottom:6px;">Banner + sidebar</div>
-        <div style="font-size:12px;color:#6b7280;">Top banner + sidebar listing</div>
+      <div style="border:2px solid #4ade80;border-radius:10px;padding:1rem;text-align:center;">
+        <div style="font-size:10px;background:#4ade80;color:#0a1a0a;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:6px;font-weight:600;">BEST VALUE</div>
+        <div style="font-weight:700;font-size:1.1rem;margin-bottom:4px;">£70/month</div>
+        <div style="font-size:13px;color:#555;margin-bottom:6px;">Banner + sidebar</div>
+        <div style="font-size:12px;color:#888;">Top banner + sidebar listing</div>
       </div>
     </div>
-    <div class="fg"><label>Business name</label><input type="text" placeholder="Your business name" /></div>
-    <div class="frow">
-      <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com" /></div>
-      <div class="fg"><label>Phone</label><input type="tel" placeholder="07..." /></div>
-    </div>
-    <div class="fg"><label>Website or social media</label><input type="text" placeholder="www.yourbusiness.co.uk" /></div>
+    <div class="fg"><label>Business name</label><input type="text" placeholder="Your business name"></div>
+    <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+    <div class="fg"><label>Phone</label><input type="tel" placeholder="07..."></div>
+    <div class="fg"><label>Website or social media</label><input type="text" placeholder="www.yourbusiness.co.uk"></div>
     <div class="mfooter">
       <button class="btn-cancel" onclick="closeModal('ad-modal')">Cancel</button>
       <button class="btn-submit">Send enquiry →</button>
@@ -356,82 +312,59 @@ nav { background: #111827; padding: 0 1.5rem; display: flex; justify-content: sp
 
 <script>
 // ─── CONFIG ──────────────────────────────────────────────────
-const API = 'https://haqqjobs-api.onrender.com';
+var API = '';
 
-// ─── STATE ───────────────────────────────────────────────────
 var allJobs = [];
 var currentFilter = 'all';
 
-// ─── CATEGORY DETECTION ──────────────────────────────────────
-function getCategory(title) {
-  var t = (title || '').toLowerCase();
-  if (t.indexOf('warehouse') >= 0 || t.indexOf('picker') >= 0 || t.indexOf('packer') >= 0 || t.indexOf('fulfilment') >= 0 || t.indexOf('sorter') >= 0 || t.indexOf('forklift') >= 0 || t.indexOf('amazon') >= 0) return 'warehouse';
-  if (t.indexOf('security') >= 0 || t.indexOf('door supervisor') >= 0 || t.indexOf('guard') >= 0 || t.indexOf('cctv') >= 0 || t.indexOf('sia') >= 0) return 'security';
-  if (t.indexOf('construct') >= 0 || t.indexOf('labour') >= 0 || t.indexOf('scaff') >= 0 || t.indexOf('groundwork') >= 0) return 'construction';
-  if (t.indexOf('driver') >= 0 || t.indexOf('hgv') >= 0 || t.indexOf('lgv') >= 0 || t.indexOf('delivery') >= 0 || t.indexOf('van driver') >= 0) return 'driving';
-  if (t.indexOf('clean') >= 0 || t.indexOf('hygiene') >= 0) return 'cleaning';
-  if (t.indexOf('care') >= 0 || t.indexOf('support worker') >= 0 || t.indexOf('healthcare') >= 0 || t.indexOf('carer') >= 0) return 'care';
-  return 'other';
+// ─── INIT ─────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', function() {
+  loadJobs('warehouse', '');
+});
+
+// ─── SEARCH HANDLER ───────────────────────────────────────────
+function handleSearch() {
+  var term = document.getElementById('search-input').value.trim();
+  if (term.length > 0) {
+    loadJobs(term, '');
+  } else {
+    loadJobs('warehouse', '');
+  }
 }
 
-// ─── SALARY DISPLAY ──────────────────────────────────────────
-function getSalary(min) {
-  if (!min) return 'Competitive';
-  var hourly = min / 2080;
-  if (hourly < 100) return '£' + hourly.toFixed(2) + '/hr';
-  return '£' + Math.round(min).toLocaleString() + '/yr';
-}
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') handleSearch();
+  });
+});
 
-// ─── DATE FORMAT ─────────────────────────────────────────────
-function getDate(str) {
-  if (!str) return 'Recently';
-  var hrs = Math.round((Date.now() - new Date(str)) / 3600000);
-  if (hrs < 1) return 'Just posted';
-  if (hrs < 24) return hrs + ' hour' + (hrs > 1 ? 's' : '') + ' ago';
-  var days = Math.round(hrs / 24);
-  return days + ' day' + (days > 1 ? 's' : '') + ' ago';
-}
-
-// ─── LOGO COLOR ──────────────────────────────────────────────
-function getColor(company) {
-  var c = (company || '').toLowerCase();
-  if (c.indexOf('amazon') >= 0) return '#FF9900';
-  if (c.indexOf('g4s') >= 0) return '#003087';
-  if (c.indexOf('securitas') >= 0) return '#CC0000';
-  if (c.indexOf('dpd') >= 0) return '#DC0032';
-  if (c.indexOf('nhs') >= 0) return '#005EB8';
-  if (c.indexOf('royal mail') >= 0) return '#E60000';
-  if (c.indexOf('care uk') >= 0) return '#8B0000';
-  if (c.indexOf('tesco') >= 0) return '#00539F';
-  if (c.indexOf('asda') >= 0) return '#78BE20';
-  if (c.indexOf('balfour') >= 0) return '#E63946';
-  if (c.indexOf('kier') >= 0) return '#c8860a';
-  var cols = ['#1a4d8f','#8B0000','#2d6a2d','#c8860a','#5b35d5','#0f6e56','#854f0b','#185fa5'];
-  return cols[(company || 'A').charCodeAt(0) % cols.length];
-}
-
-// ─── LOAD JOBS ───────────────────────────────────────────────
+// ─── LOAD JOBS FROM BACKEND ───────────────────────────────────
 function loadJobs(kw, loc) {
   var list = document.getElementById('jobs-list');
   var status = document.getElementById('status-txt');
-  list.innerHTML = '<div class="loading"><div class="spinner"></div><p>Loading real UK jobs...</p><p style="font-size:12px;color:#9ca3af;margin-top:6px;">Please wait — may take up to 30 seconds</p></div>';
+  list.innerHTML = '<div class="loading"><div class="spinner"></div><p>Loading real UK jobs...</p><p style="font-size:12px;color:#aaa;margin-top:6px;">Please wait — may take up to 30 seconds</p></div>';
   if (status) status.textContent = 'Connecting...';
 
-  var keywords = kw || 'warehouse security construction care cleaning driver';
+  var keywords = kw || 'warehouse';
   var location = loc || '';
 
   var reedUrl = API + '/api/reed?keywords=' + encodeURIComponent(keywords) + '&location=' + encodeURIComponent(location);
   var adzunaUrl = API + '/api/adzuna?keywords=' + encodeURIComponent(keywords) + '&location=' + encodeURIComponent(location);
 
   Promise.allSettled([
-    fetch(reedUrl).then(function(r) { return r.json(); }),
-    fetch(adzunaUrl).then(function(r) { return r.json(); })
+    fetch(reedUrl).then(function(r) {
+      if (!r.ok) throw new Error('Server error');
+      return r.json();
+    }),
+    fetch(adzunaUrl).then(function(r) {
+      if (!r.ok) throw new Error('Server error');
+      return r.json();
+    })
   ]).then(function(results) {
     var jobs = [];
     var reedCount = 0;
     var adzunaCount = 0;
 
-    // Process Reed results
     if (results[0].status === 'fulfilled' && results[0].value && results[0].value.results) {
       results[0].value.results.forEach(function(j) {
         jobs.push({
@@ -450,7 +383,6 @@ function loadJobs(kw, loc) {
       reedCount = results[0].value.results.length;
     }
 
-    // Process Adzuna results
     if (results[1].status === 'fulfilled' && results[1].value && results[1].value.results) {
       results[1].value.results.forEach(function(j) {
         jobs.push({
@@ -474,120 +406,103 @@ function loadJobs(kw, loc) {
     if (status) {
       if (jobs.length > 0) {
         status.textContent = 'Reed: ' + reedCount + ' · Adzuna: ' + adzunaCount + ' — ' + jobs.length + ' jobs found';
-        status.style.color = '#4ade80';
+        status.style.color = '#0f6e56';
       } else {
-        status.textContent = 'No jobs found right now';
-        status.style.color = '#fbbf24';
+        status.textContent = 'No jobs found right now. Try another category.';
+        status.style.color = '#cc8800';
       }
     }
 
     var totalEl = document.getElementById('total-count');
     if (totalEl) totalEl.textContent = jobs.length > 0 ? jobs.length + '+' : '0';
 
+    updateCategoryCounts();
     showJobs(currentFilter);
 
   }).catch(function(err) {
     list.innerHTML = '<div class="loading">Could not connect to server. Please refresh the page.</div>';
-    if (status) { status.textContent = 'Connection error'; status.style.color = '#f87171'; }
+    if (status) { status.textContent = 'Connection error'; status.style.color = '#cc0000'; }
   });
 }
 
-// ─── SHOW JOBS ───────────────────────────────────────────────
-function showJobs(cat) {
+// ─── RENDER FILTERED JOBS ─────────────────────────────────────
+function showJobs(filter) {
   var list = document.getElementById('jobs-list');
-  var filtered = cat === 'all' ? allJobs : allJobs.filter(function(j) { return j.category === cat; });
+  var filtered = filter === 'all' ? allJobs : allJobs.filter(function(j) { return j.category === filter; });
 
   if (filtered.length === 0) {
-    list.innerHTML = '<div class="loading">No ' + (cat === 'all' ? '' : cat + ' ') + 'jobs found. Try a different search.</div>';
+    list.innerHTML = '<div class="loading">No jobs available under this tab. Use the search bar above to look for live openings.</div>';
     return;
   }
 
-  list.innerHTML = '';
-  filtered.forEach(function(job) {
-    var card = makeCard(job);
-    list.appendChild(card);
+  var html = '';
+  filtered.forEach(function(j) {
+    var srcClass = j.source.toLowerCase();
+    html += '<div class="job-card" onclick="openApplyModal(' + JSON.stringify(j).replace(/"/g, '&quot;') + ')">' +
+              '<div class="job-main">' +
+                '<div class="job-badge ' + escapeHTML(j.category) + '">' + escapeHTML(j.category).toUpperCase() + '</div>' +
+                '<div class="job-title">' + escapeHTML(j.title) + '</div>' +
+                '<div class="job-company">' + escapeHTML(j.company) + '</div>' +
+                '<div class="job-meta">' +
+                  '<div class="meta-item">📍 ' + escapeHTML(j.location) + '</div>' +
+                  '<div class="meta-item">💷 ' + j.salary + '</div>' +
+                  '<div class="meta-item">⏰ ' + escapeHTML(j.type) + '</div>' +
+                '</div>' +
+              '</div>' +
+              '<div class="job-side">' +
+                '<div class="source-tag ' + srcClass + '">' + j.source + '</div>' +
+                '<button class="btn-apply-card">View Details</button>' +
+                '<div class="jdate">' + escapeHTML(j.posted) + '</div>' +
+              '</div>' +
+            '</div>';
   });
+  list.innerHTML = html;
 }
 
-// ─── MAKE CARD ───────────────────────────────────────────────
-function makeCard(job) {
-  var card = document.createElement('div');
-  card.className = 'job-card';
-
-  var color = getColor(job.company);
-  var initials = (job.company || 'X').split(' ').map(function(w) { return w[0]; }).slice(0,3).join('');
-  var cat = job.category || 'other';
-
-  card.innerHTML =
-    '<div class="jlogo" style="background:' + color + '">' + initials + '</div>' +
-    '<div class="jbody">' +
-      '<div class="jrow">' +
-        '<div style="flex:1">' +
-          '<div class="jtitle">' + escHtml(job.title) + '</div>' +
-          '<div class="jcompany">' + escHtml(job.company) + ' · ' + escHtml(job.location) + '</div>' +
-          '<div class="jtags">' +
-            '<span class="tag tag-' + cat + '">' + cat + '</span>' +
-            '<span class="tag tag-src">' + job.source + '</span>' +
-          '</div>' +
-        '</div>' +
-        '<div class="jright">' +
-          '<div class="jsalary">' + escHtml(job.salary) + '</div>' +
-          '<div class="jtype">' + escHtml(job.type) + '</div>' +
-          '<button class="btn-apply">Apply now</button>' +
-          '<div class="jdate">' + job.posted + '</div>' +
-        '</div>' +
-      '</div>' +
-    '</div>';
-
-  card.querySelector('.btn-apply').addEventListener('click', function() {
-    openApplyModal(job);
-  });
-
-  return card;
-}
-
-// ─── ESCAPE HTML ─────────────────────────────────────────────
-function escHtml(str) {
-  return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-// ─── FILTER ──────────────────────────────────────────────────
-function filterBy(cat, btn) {
+// ─── FILTER ───────────────────────────────────────────────────
+function filterCategory(cat) {
   currentFilter = cat;
   document.querySelectorAll('.fpill').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
+  var activeBtn = document.getElementById('btn-' + cat);
+  if (activeBtn) activeBtn.classList.add('active');
   showJobs(cat);
 }
 
-// ─── SEARCH ──────────────────────────────────────────────────
-function doSearch() {
-  var kw = document.getElementById('kw-select').value;
-  var loc = document.getElementById('pc-input').value.trim();
-  loadJobs(kw, loc);
+// ─── CATEGORY COUNTS ──────────────────────────────────────────
+function updateCategoryCounts() {
+  // counts shown in status text only; pills don't have count badges in this design
 }
 
-// ─── TABS ────────────────────────────────────────────────────
-function switchTab(tab, el) {
-  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
-  el.classList.add('active');
-  document.getElementById('main-panel').style.display = tab === 'main' ? 'block' : 'none';
-  document.getElementById('habesha-panel').style.display = tab === 'habesha' ? 'block' : 'none';
-  if (tab === 'habesha') loadHabeshJobs();
+// ─── CATEGORY MATCHING ────────────────────────────────────────
+function getCategory(title) {
+  if (!title) return 'other';
+  var t = title.toLowerCase();
+  if (t.includes('warehouse') || t.includes('logistics') || t.includes('picker') || t.includes('packer') || t.includes('forklift') || t.includes('store') || t.includes('depot')) return 'warehouse';
+  if (t.includes('security') || t.includes('guard') || t.includes('cctv') || t.includes('officer') || t.includes('door supervisor')) return 'security';
+  if (t.includes('care') || t.includes('nurse') || t.includes('support worker') || t.includes('healthcare') || t.includes('carer') || t.includes('hca')) return 'care';
+  if (t.includes('clean') || t.includes('domestic') || t.includes('housekeep') || t.includes('facilities') || t.includes('janitor')) return 'cleaning';
+  if (t.includes('driver') || t.includes('delivery') || t.includes('van') || t.includes('courier') || t.includes('hgv') || t.includes('lgv')) return 'driver';
+  return 'other';
 }
 
-// ─── HABESHA JOBS ────────────────────────────────────────────
-function loadHabeshJobs() {
-  var jobs = [
-    {id:'h1',title:'Kitchen Assistant',company:'Lalibela Ethiopian Restaurant',location:'London, N4',salary:'£12.21/hr',type:'Part-time',posted:'1 day ago',source:'HaqqJobs',category:'other',url:'#'},
-    {id:'h2',title:'Hair Stylist',company:'Asmara Hair & Beauty',location:'Birmingham, B11',salary:'£13.00/hr',type:'Full-time',posted:'2 days ago',source:'HaqqJobs',category:'other',url:'#'},
-    {id:'h3',title:'Shop Assistant',company:'Addis Market',location:'Manchester, M14',salary:'£12.21/hr',type:'Part-time',posted:'3 days ago',source:'HaqqJobs',category:'other',url:'#'}
-  ];
-  var list = document.getElementById('habesha-list');
-  list.innerHTML = '';
-  jobs.forEach(function(j) { list.appendChild(makeCard(j)); });
+// ─── FORMATTERS ───────────────────────────────────────────────
+function getSalary(sal) {
+  if (!sal || sal === 0) return 'Competitive rate';
+  if (sal < 100) return '£' + sal + ' / hour';
+  return '£' + Number(sal).toLocaleString() + ' / year';
 }
 
-// ─── APPLY MODAL ─────────────────────────────────────────────
+function getDate(dtStr) {
+  if (!dtStr) return 'Recently';
+  return dtStr.substring(0, 10);
+}
+
+function escapeHTML(str) {
+  if (!str) return '';
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// ─── MODAL CONTROLS ───────────────────────────────────────────
 function openApplyModal(job) {
   document.getElementById('m-title').textContent = 'Apply for this job';
   document.getElementById('m-job-title').textContent = job.title;
@@ -598,11 +513,10 @@ function openApplyModal(job) {
     '⏰ ' + job.type + '<br>' +
     '🕐 Posted: ' + job.posted;
   var applyBtn = document.getElementById('m-apply-btn');
-  applyBtn.href = job.url && job.url !== '#' ? job.url : 'https://www.reed.co.uk/jobs';
+  applyBtn.href = job.url && job.url !== '#' ? job.url : 'https://www.reed.co.uk';
   openModal('apply-modal');
 }
 
-// ─── POST JOB MODAL ──────────────────────────────────────────
 function openPostModal(isHabesha) {
   document.getElementById('post-title').textContent = isHabesha ? 'Post a Habesha business job — free' : 'Post a job on HaqqJobs';
   document.getElementById('post-note').textContent = isHabesha ? 'FREE for 30 days — Habesha businesses only' : '£50 — listed for 30 days';
@@ -610,7 +524,6 @@ function openPostModal(isHabesha) {
   openModal('post-modal');
 }
 
-// ─── MODALS ──────────────────────────────────────────────────
 function openModal(id) { document.getElementById(id).classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
@@ -619,13 +532,6 @@ document.querySelectorAll('.overlay').forEach(function(el) {
     if (e.target === el) el.classList.remove('open');
   });
 });
-
-document.getElementById('pc-input').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') doSearch();
-});
-
-// ─── START ───────────────────────────────────────────────────
-loadJobs('', '');
 </script>
 </body>
 </html>
