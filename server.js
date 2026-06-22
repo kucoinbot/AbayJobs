@@ -8,18 +8,16 @@ const PORT = process.env.PORT || 3000;
 const REED_KEY = process.env.REED_API_KEY;
 const ADZUNA_APP_ID = process.env.ADZUNA_APP_ID;
 const ADZUNA_APP_KEY = process.env.ADZUNA_APP_KEY;
-const MIN_SALARY = '25396';
 
-// Serve static files (your website)
+const PAGE_SIZE = 20; // jobs per page shown to the user
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Allow all origins
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   next();
 });
 
-// Fetch with timeout
 function fetchJSON(url, headers = {}, timeoutMs = 15000) {
   return new Promise((resolve, reject) => {
     const req = https.get(url, { headers }, (res) => {
@@ -38,43 +36,63 @@ function fetchJSON(url, headers = {}, timeoutMs = 15000) {
   });
 }
 
-// Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'running' });
 });
 
-// Reed API
+// ─── REED API ──────────────────────────────────────────────
+// Reed pages using "resultsToSkip". page=1 -> skip 0, page=2 -> skip 20, etc.
 app.get('/api/reed', async (req, res) => {
-  const keywords = req.query.keywords || 'warehouse security construction care cleaning driver';
+  const keywords = req.query.keywords || '';
   const location = req.query.location || '';
-  const params = new URLSearchParams({ keywords, locationName: location, resultsToTake: '50', minimumSalary: MIN_SALARY });
+  const page = Math.max(1, parseInt(req.query.page, 10) || 1);
+  const skip = (page - 1) * PAGE_SIZE;
+
+  const params = new URLSearchParams({
+    resultsToTake: String(PAGE_SIZE),
+    resultsToSkip: String(skip)
+  });
+  if (keywords) params.set('keywords', keywords);
+  if (location) params.set('locationName', location);
+
   const url = `https://www.reed.co.uk/api/1.0/search?${params}`;
   const auth = Buffer.from(`${REED_KEY}:`).toString('base64');
+
   try {
-    const data = await fetchJSON(url, { 'Authorization': `Basic ${auth}`, 'User-Agent': 'HaqqJobs/1.0' });
+    const data = await fetchJSON(url, { 'Authorization': `Basic ${auth}`, 'User-Agent': 'AbayJobs/1.0' });
     res.json(data);
   } catch(e) {
     res.json({ results: [], error: e.message });
   }
 });
 
-// Adzuna API
+// ─── ADZUNA API ────────────────────────────────────────────
+// Adzuna pages natively: /search/1, /search/2, /search/3 ...
 app.get('/api/adzuna', async (req, res) => {
-  const keywords = req.query.keywords || 'warehouse security labourer care assistant cleaner driver';
+  const keywords = req.query.keywords || '';
   const location = req.query.location || '';
-  const params = new URLSearchParams({ app_id: ADZUNA_APP_ID, app_key: ADZUNA_APP_KEY, results_per_page: '50', what: keywords, where: location, salary_min: MIN_SALARY, max_days_old: '2' });
-  const url = `https://api.adzuna.com/v1/api/jobs/gb/search/1?${params}`;
+  const page = Math.max(1, parseInt(req.query.page, 10) || 1);
+
+  const params = new URLSearchParams({
+    app_id: ADZUNA_APP_ID,
+    app_key: ADZUNA_APP_KEY,
+    results_per_page: String(PAGE_SIZE)
+  });
+  if (keywords) params.set('what', keywords);
+  if (location) params.set('where', location);
+
+  const url = `https://api.adzuna.com/v1/api/jobs/gb/search/${page}?${params}`;
+
   try {
-    const data = await fetchJSON(url, { 'User-Agent': 'HaqqJobs/1.0' });
+    const data = await fetchJSON(url, { 'User-Agent': 'AbayJobs/1.0' });
     res.json(data);
   } catch(e) {
     res.json({ results: [], error: e.message });
   }
 });
 
-// Serve index.html for all other routes
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT, () => console.log(`HaqqJobs running on port ${PORT}`));
+app.listen(PORT, () => console.log(`AbayJobs running on port ${PORT}`));
