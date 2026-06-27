@@ -9,6 +9,8 @@ const REED_KEY = process.env.REED_API_KEY;
 const ADZUNA_APP_ID = process.env.ADZUNA_APP_ID;
 const ADZUNA_APP_KEY = process.env.ADZUNA_APP_KEY;
 
+const PAGE_SIZE = 20; // jobs per page shown to the user
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
@@ -16,57 +18,101 @@ app.use((req, res, next) => {
   next();
 });
 
-function fetchJSON(url, headers = {}) {
+function fetchJSON(url, headers = {}, timeoutMs = 15000) {
   return new Promise((resolve, reject) => {
-    https.get(url, { headers }, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
+    const req = https.get(url, { headers }, (res) => {
+      let body = '';
+      res.on('data', chunk => body += chunk);
       res.on('end', () => {
-        try { resolve(JSON.parse(data)); }
-        catch { resolve({ results: [] }); }
+        try { resolve(JSON.parse(body)); }
+        catch(e) { reject(new Error('Invalid JSON')); }
       });
-    }).on('error', () => resolve({ results: [] }));
+    });
+    req.setTimeout(timeoutMs, () => {
+      req.destroy();
+      reject(new Error('Timeout'));
+    });
+    req.on('error', reject);
   });
 }
 
-// Reed
+app.get('/health', (req, res) => {
+  res.json({ status: 'running' });
+});
+
+// ─── REED API ──────────────────────────────────────────────
+// FIX: Reed's locationName does fuzzy radius matching by default,
+// pulling in surrounding towns (e.g. searching "London" also
+// returns Harrow, Croydon, Feltham etc). Setting distanceFromLocation
+// to 0 forces Reed to match the location name strictly instead of
+// treating it as a center point for a radius search.
 app.get('/api/reed', async (req, res) => {
-  const { keywords = '', location = '', page = 1 } = req.query;
+  const keywords = req.query.keywords || '';
+  const location = req.query.location || '';
+  const page = Math.max(1, parseInt(req.query.page, 10) || 1);
+  const skip = (page - 1) * PAGE_SIZE;
 
   const params = new URLSearchParams({
-    keywords,
-    locationName: location,
-    resultsToTake: '100',
-    resultsToSkip: (page - 1) * 100
+    resultsToTake: String(PAGE_SIZE),
+    resultsToSkip: String(skip)
   });
+  if (keywords) params.set('keywords', keywords);
+  if (location) {
+    params.set('locationName', location);
+    params.set('distanceFromLocation', '0'); // exact match, no radius fuzz
+  }
 
   const url = `https://www.reed.co.uk/api/1.0/search?${params}`;
   const auth = Buffer.from(`${REED_KEY}:`).toString('base64');
 
-  const data = await fetchJSON(url, { Authorization: `Basic ${auth}` });
-  res.json(data);
+  try {
+    const data = await fetchJSON(url, { 'Authorization': `Basic ${auth}`, 'User-Agent': 'AbayJobs/1.0' });
+    res.json(data);
+  } catch(e) {
+    res.json({ results: [], error: e.message });
+  }
 });
 
-// Adzuna
+// ─── ADZUNA API ────────────────────────────────────────────
+// Adzuna's "where" also does fuzzy/wide matching for big cities.
+// We can't fully force exact-string matching the way Reed allows,
+// but we filter the returned results server-side below to keep
+// only jobs whose location text actually contains the searched
+// city/postcode, dropping the wider commuter-belt results.
 app.get('/api/adzuna', async (req, res) => {
-  const { keywords = '', location = '', page = 1 } = req.query;
+  const keywords = req.query.keywords || '';
+  const location = req.query.location || '';
+  const page = Math.max(1, parseInt(req.query.page, 10) || 1);
 
   const params = new URLSearchParams({
     app_id: ADZUNA_APP_ID,
     app_key: ADZUNA_APP_KEY,
-    results_per_page: '100',
-    what: keywords,
-    where: location
+    results_per_page: String(PAGE_SIZE)
   });
+  if (keywords) params.set('what', keywords);
+  if (location) params.set('where', location);
 
   const url = `https://api.adzuna.com/v1/api/jobs/gb/search/${page}?${params}`;
-  const data = await fetchJSON(url);
 
-  res.json(data);
+  try {
+    const data = await fetchJSON(url, { 'User-Agent': 'AbayJobs/1.0' });
+
+    if (location && data.results) {
+      const locLower = location.toLowerCase().trim();
+      data.results = data.results.filter(j => {
+        const jobLoc = ((j.location && j.location.display_name) || '').toLowerCase();
+        return jobLoc.indexOf(locLower) !== -1;
+      });
+    }
+
+    res.json(data);
+  } catch(e) {
+    res.json({ results: [], error: e.message });
+  }
 });
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT, () => console.log('Server running'));
+app.listen(PORT, () => console.log(`AbayJobs running on port ${PORT}`));
