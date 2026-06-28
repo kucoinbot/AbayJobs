@@ -67,6 +67,23 @@ app.get('/api/reed', async (req, res) => {
 
   try {
     const data = await fetchJSON(url, { 'Authorization': `Basic ${auth}`, 'User-Agent': 'AbayJobs/1.0' });
+
+    // Reed's API has no sort-by-date parameter (confirmed against their
+    // official docs), so it always returns relevance-ranked results.
+    // We sort the page we receive so the newest jobs in that batch show
+    // first. This only reorders within the current page — it can't pull
+    // in newer jobs sitting on a different page of Reed's own ranking.
+    if (data.results) {
+      data.results.sort((a, b) => {
+        const parseDM = (str) => {
+          const m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(str || '');
+          if (!m) return 0;
+          return new Date(parseInt(m[3], 10), parseInt(m[2], 10) - 1, parseInt(m[1], 10)).getTime();
+        };
+        return parseDM(b.date) - parseDM(a.date);
+      });
+    }
+
     res.json(data);
   } catch(e) {
     res.json({ results: [], error: e.message });
@@ -87,7 +104,9 @@ app.get('/api/adzuna', async (req, res) => {
   const params = new URLSearchParams({
     app_id: ADZUNA_APP_ID,
     app_key: ADZUNA_APP_KEY,
-    results_per_page: String(PAGE_SIZE)
+    results_per_page: String(PAGE_SIZE),
+    sort_by: 'date',       // newest jobs first instead of relevance ranking
+    max_days_old: '30'     // drop listings older than 30 days
   });
   if (keywords) params.set('what', keywords);
   if (location) params.set('where', location);
