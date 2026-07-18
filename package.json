@@ -1,15 +1,9 @@
 {
   "name": "abayjobs-api",
   "version": "1.0.0",
-  "description": "AbayJobs — UK job board API for Reed and Adzuna",
+  "description": "AbayJobs — UK job board for Reed and Adzuna",
   "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  }
+  "scripts": { "start": "node server.js" },
+  "dependencies": { "express": "^4.18.2" },
+  "engines": { "node": ">=18.0.0" }
 }
