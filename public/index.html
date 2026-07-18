@@ -17,6 +17,13 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
 .btn-nav { padding: 7px 16px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; }
 .btn-nav-secondary { padding: 7px 16px; background: rgba(255,255,255,0.1); color: white; border-radius: 8px; font-size: 13px; }
 
+.ad-bar { background: white; border-bottom: 1px solid #e5e5e0; padding: 0.75rem 1.5rem; text-align: center; position: relative; z-index: 1; }
+.ad-label-top { font-size: 10px; color: #bbb; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+.ad-inner { background: linear-gradient(135deg, #1a1a2e, #16213e); border-radius: 10px; padding: 1rem 1.5rem; display: inline-flex; align-items: center; gap: 1.5rem; max-width: 760px; width: 100%; justify-content: space-between; }
+.ad-text strong { color: white; display: block; font-size: 14px; margin-bottom: 2px; }
+.ad-text span { color: rgba(255,255,255,0.6); font-size: 12px; }
+.btn-ad { padding: 9px 20px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
+
 .hero { background: linear-gradient(135deg, #0f1923 0%, #1a2d1a 100%); padding: 3.5rem 1.5rem 3rem; text-align: center; }
 .hero-badge { display: inline-block; background: rgba(74,222,128,0.15); color: #4ade80; font-size: 12px; padding: 5px 14px; border-radius: 20px; margin-bottom: 1rem; border: 1px solid rgba(74,222,128,0.3); }
 .hero h1 { font-size: 2.3rem; font-weight: 700; color: white; margin-bottom: 0.6rem; line-height: 1.2; }
@@ -35,25 +42,14 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
 .stat-num { font-size: 1.1rem; font-weight: 700; color: #4ade80; text-align: center; }
 .stat-lbl { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; text-align: center; margin-top: 2px; }
 
-.ad-bar { background: white; border-bottom: 1px solid #e5e5e0; padding: 0.75rem 1.5rem; text-align: center; position: relative; z-index: 1; }
-.ad-label-top { font-size: 10px; color: #bbb; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-.ad-inner { background: linear-gradient(135deg, #1a1a2e, #16213e); border-radius: 10px; padding: 1rem 1.5rem; display: inline-flex; align-items: center; gap: 1.5rem; max-width: 760px; width: 100%; justify-content: space-between; }
-.ad-text strong { color: white; display: block; font-size: 14px; margin-bottom: 2px; }
-.ad-text span { color: rgba(255,255,255,0.6); font-size: 12px; }
-.btn-ad { padding: 9px 20px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
-
 .page { max-width: 1080px; margin: 0 auto; padding: 1.5rem; display: grid; grid-template-columns: 1fr 260px; gap: 1.5rem; }
 
 .tabs { display: flex; border-bottom: 2px solid #e8e8e3; margin-bottom: 1.25rem; }
 .tab { padding: 9px 18px; font-size: 14px; cursor: pointer; color: #888; border-bottom: 2px solid transparent; margin-bottom: -2px; }
 .tab.active { color: #0f1923; font-weight: 600; border-bottom-color: #4ade80; }
 
-.filters { display: flex; gap: 6px; margin-bottom: 1.25rem; flex-wrap: wrap; align-items: center; }
-.fpill { padding: 6px 14px; border-radius: 20px; border: 1px solid #ddd; background: white; font-size: 13px; cursor: pointer; color: #555; transition: all 0.15s; }
-.fpill:hover { border-color: #4ade80; }
-.fpill.active { background: #0f1923; color: white; border-color: #0f1923; }
-.fpill:disabled { opacity: 0.4; cursor: not-allowed; }
-.status-txt { font-size: 11px; color: #aaa; margin-left: auto; }
+.status-bar { display: flex; justify-content: flex-end; margin-bottom: 1rem; }
+.status-txt { font-size: 11px; color: #aaa; }
 
 .jobs { display: flex; flex-direction: column; gap: 10px; }
 
@@ -69,17 +65,23 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
 .badge-other { background: #f5f5f0; color: #666; }
 .jtitle { font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 4px; line-height: 1.3; }
 .jcompany { font-size: 14px; color: #555; margin-bottom: 10px; font-weight: 500; }
-.jmeta { display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; color: #666; }
+.jmeta { display: flex; flex-wrap: wrap; gap: 10px; font-size: 12px; color: #666; }
 .jside { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex-shrink: 0; }
 .src-tag { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.4px; }
 .src-reed { background: #eff6ff; color: #1e40af; }
 .src-adzuna { background: #fdf2f8; color: #9d174d; }
-.btn-apply { padding: 9px 18px; background: #0f1923; color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.15s; }
+.btn-apply { padding: 9px 18px; background: #0f1923; color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
 .btn-apply:hover { background: #1a293a; }
 
 .loading { text-align: center; padding: 3rem; color: #888; background: white; border-radius: 12px; border: 1px solid #e8e8e3; }
 .spinner { width: 30px; height: 30px; border: 3px solid #e5e5e0; border-top-color: #4ade80; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem; }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+.pagination { display: none; justify-content: center; align-items: center; gap: 12px; margin-top: 1.25rem; }
+.btn-page { padding: 8px 18px; border-radius: 20px; border: 1px solid #ddd; background: white; font-size: 13px; cursor: pointer; color: #555; }
+.btn-page:hover { border-color: #4ade80; }
+.btn-page:disabled { opacity: 0.4; cursor: not-allowed; }
+.page-indicator { font-size: 13px; color: #888; font-weight: 600; }
 
 .sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
 .scard { background: white; border: 1px solid #e8e8e3; border-radius: 12px; padding: 1.25rem; }
@@ -106,12 +108,11 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
 .overlay.open { opacity: 1; pointer-events: auto; }
 .modal { background: white; width: 100%; max-width: 480px; border-radius: 16px; padding: 2rem; box-shadow: 0 25px 50px rgba(0,0,0,0.25); transform: translateY(15px); transition: transform 0.2s; position: relative; max-height: 90vh; overflow-y: auto; }
 .overlay.open .modal { transform: translateY(0); }
-.modal-close { position: absolute; top: 1rem; right: 1rem; background: #f1f5f9; border: none; font-size: 18px; color: #666; cursor: pointer; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.modal-close { position: absolute; top: 1rem; right: 1rem; background: #f1f5f9; border: none; font-size: 18px; color: #666; cursor: pointer; width: 30px; height: 30px; border-radius: 50%; }
 .modal h2 { font-size: 1.3rem; font-weight: 700; color: #0f172a; margin-bottom: 6px; }
 .job-info-box { background: #f8fafc; border-radius: 8px; padding: 12px 14px; margin-bottom: 1rem; font-size: 13px; color: #555; line-height: 1.8; }
 .btn-go { display: block; width: 100%; padding: 13px; background: #4ade80; color: #0a1a0a; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; text-decoration: none; text-align: center; margin-bottom: 8px; }
 .btn-close-modal { display: block; width: 100%; padding: 10px; background: #f0f0eb; color: #555; border: none; border-radius: 10px; font-size: 14px; cursor: pointer; }
-
 .fg { margin-bottom: 1rem; }
 .fg label { display: block; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 5px; }
 .fg input, .fg select, .fg textarea { width: 100%; padding: 10px 13px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; font-family: inherit; }
@@ -165,15 +166,14 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
   <div class="hero-badge">UK Jobs for the Habesha Community</div>
   <h1>Find your next UK job<br><span>faster than anyone else</span></h1>
   <p>Warehouse · Security · Construction · Driving · Cleaning · Care — live jobs updated daily</p>
-
   <div class="search-box">
     <div class="search-field">
       <span class="search-field-icon">🔍</span>
-      <input type="text" id="kw-input" placeholder="Job title or keyword e.g. Cleaner, Nurse, Plumber..." maxlength="80" />
+      <input type="text" id="kw-input" placeholder="Job title e.g. Warehouse, Nurse, Driver..." maxlength="80" />
     </div>
     <div class="search-field">
       <span class="search-field-icon">📍</span>
-      <input type="text" id="city-input" placeholder="City or postcode e.g. London, B12, S1..." maxlength="50" />
+      <input type="text" id="city-input" placeholder="City or postcode e.g. London, M1, S1..." maxlength="50" />
     </div>
     <button class="btn-search" onclick="doSearch()">Search jobs</button>
   </div>
@@ -189,21 +189,19 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
 <div class="page">
   <div>
     <div class="tabs">
-      <div class="tab active" onclick="switchTab('main', this)">All UK jobs</div>
-      <div class="tab" onclick="switchTab('habesha', this)">Habesha businesses hiring</div>
+      <div class="tab active" onclick="switchTab('main',this)">All UK jobs</div>
+      <div class="tab" onclick="switchTab('habesha',this)">Habesha businesses hiring</div>
     </div>
 
     <div id="main-panel">
-      <div class="filters" style="justify-content:flex-end;">
-        <span class="status-txt" id="status-txt">Connecting...</span>
-      </div>
+      <div class="status-bar"><span class="status-txt" id="status-txt">Connecting...</span></div>
       <div class="jobs" id="jobs-list">
         <div class="loading"><div class="spinner"></div><p>Loading live jobs...</p></div>
       </div>
-      <div id="pagination" style="display:none; justify-content:center; align-items:center; gap:12px; margin-top:1.25rem;">
-        <button id="btn-prev" class="fpill" onclick="goToPage(currentPage - 1)" style="padding:8px 18px;">← Previous</button>
-        <span id="page-indicator" style="font-size:13px; color:#888; font-weight:600;">Page 1</span>
-        <button id="btn-next" class="fpill" onclick="goToPage(currentPage + 1)" style="padding:8px 18px;">Next →</button>
+      <div class="pagination" id="pagination">
+        <button class="btn-page" id="btn-prev" onclick="goToPage(currentPage-1)">← Previous</button>
+        <span class="page-indicator" id="page-indicator">Page 1</span>
+        <button class="btn-page" id="btn-next" onclick="goToPage(currentPage+1)">Next →</button>
       </div>
     </div>
 
@@ -214,7 +212,7 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
         <button class="btn-green" onclick="openPostModal(true)">Post your job — free for Habesha businesses</button>
       </div>
       <div class="jobs" id="habesha-list">
-        <div class="loading">No jobs posted yet. Be the first Habesha business to post a job — completely free for 30 days!</div>
+        <div class="loading">No jobs posted yet. Be the first Habesha business to post — completely free for 30 days!</div>
       </div>
     </div>
   </div>
@@ -247,32 +245,34 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
   </div>
 </div>
 
+<!-- APPLY MODAL -->
 <div class="overlay" id="apply-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('apply-modal')">×</button>
-    <div id="m-source" class="job-badge badge-other" style="margin-bottom:8px;">Source</div>
-    <h2 id="m-title">Job Title</h2>
-    <p id="m-company" style="font-weight:600;margin-bottom:12px;color:#1a1a1a;">Company Name</p>
+    <div id="m-source" class="job-badge badge-other" style="margin-bottom:8px;"></div>
+    <h2 id="m-title"></h2>
+    <p id="m-company" style="font-weight:600;margin-bottom:12px;color:#555;font-size:14px;"></p>
     <div class="job-info-box" id="m-details"></div>
-    <p style="font-size:11px;color:#64748b;margin-bottom:1rem;">Clicking apply will take you safely to the original source listing page to complete your application.</p>
+    <p style="font-size:11px;color:#64748b;margin-bottom:1rem;">You will be taken to the employer's own website to complete your application.</p>
     <a id="m-apply-btn" href="#" target="_blank" class="btn-go">Apply now — go to employer site →</a>
     <button class="btn-close-modal" onclick="closeModal('apply-modal')">Close</button>
   </div>
 </div>
 
+<!-- POST JOB MODAL -->
 <div class="overlay" id="post-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('post-modal')">×</button>
     <h2 id="post-title">Post a job on AbayJobs</h2>
     <div class="pnote" id="post-note">£50 — listed for 30 days</div>
     <div class="frow">
-      <div class="fg"><label>Company name</label><input type="text" placeholder="Your business name" /></div>
-      <div class="fg"><label>Contact email</label><input type="email" placeholder="your@email.com" /></div>
+      <div class="fg"><label>Company name</label><input type="text" placeholder="Your business name"/></div>
+      <div class="fg"><label>Contact email</label><input type="email" placeholder="your@email.com"/></div>
     </div>
-    <div class="fg"><label>Job title</label><input type="text" placeholder="e.g. Kitchen Assistant" /></div>
+    <div class="fg"><label>Job title</label><input type="text" placeholder="e.g. Kitchen Assistant"/></div>
     <div class="frow">
-      <div class="fg"><label>Location</label><input type="text" placeholder="e.g. Sheffield" /></div>
-      <div class="fg"><label>Salary</label><input type="text" placeholder="e.g. £12.21/hr" /></div>
+      <div class="fg"><label>Location</label><input type="text" placeholder="e.g. Sheffield"/></div>
+      <div class="fg"><label>Salary</label><input type="text" placeholder="e.g. £12.21/hr"/></div>
     </div>
     <div class="fg"><label>Job description</label><textarea placeholder="What will the person do? Hours? Experience?"></textarea></div>
     <div class="frow">
@@ -281,11 +281,12 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
     </div>
     <div class="mfooter">
       <button class="btn-cancel" onclick="closeModal('post-modal')">Cancel</button>
-      <button class="btn-submit" id="post-btn" onclick="alert('Submission received! Our team will manually approve it shortly.'); closeModal('post-modal');">Pay & post job →</button>
+      <button class="btn-submit" id="post-btn" onclick="alert('Submitted! Our team will review and approve shortly.');closeModal('post-modal');">Pay & post job →</button>
     </div>
   </div>
 </div>
 
+<!-- ADVERTISE MODAL -->
 <div class="overlay" id="ad-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('ad-modal')">×</button>
@@ -300,16 +301,15 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
       <div style="border:2px solid #4ade80;border-radius:10px;padding:1rem;text-align:center;">
         <div style="font-size:10px;background:#4ade80;color:#0a1a0a;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:6px;font-weight:600;">BEST VALUE</div>
         <div style="font-weight:700;font-size:1.1rem;margin-bottom:4px;">£70/month</div>
-        <div style="font-size:13px;color:#555;margin-bottom:6px;">Banner + sidebar</div>
-        <div style="font-size:12px;color:#888;">Top banner + sidebar listing</div>
+        <div style="font-size:13px;color:#555;">Banner + sidebar</div>
       </div>
     </div>
-    <div class="fg"><label>Business name</label><input type="text" placeholder="Your business name" /></div>
+    <div class="fg"><label>Business name</label><input type="text" placeholder="Your business name"/></div>
     <div class="frow">
-      <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com" /></div>
-      <div class="fg"><label>Phone</label><input type="tel" placeholder="07..." /></div>
+      <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com"/></div>
+      <div class="fg"><label>Phone</label><input type="tel" placeholder="07..."/></div>
     </div>
-    <div class="fg"><label>Website or social media</label><input type="text" placeholder="www.yourbusiness.co.uk" /></div>
+    <div class="fg"><label>Website or social media</label><input type="text" placeholder="www.yourbusiness.co.uk"/></div>
     <div class="mfooter">
       <button class="btn-cancel" onclick="closeModal('ad-modal')">Cancel</button>
       <button class="btn-submit">Send enquiry →</button>
@@ -317,13 +317,14 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
   </div>
 </div>
 
+<!-- SIGN IN MODAL -->
 <div class="overlay" id="signin-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('signin-modal')">×</button>
     <h2>Sign in to AbayJobs</h2>
     <p style="color:#666;font-size:13px;margin-bottom:1.25rem;">Job seeker or employer — sign in with your account email.</p>
-    <div class="fg"><label>Email address</label><input type="email" id="signin-email" placeholder="your@email.com" /></div>
-    <div class="fg"><label>Password</label><input type="password" id="signin-password" placeholder="Your password" /></div>
+    <div class="fg"><label>Email address</label><input type="email" id="signin-email" placeholder="your@email.com"/></div>
+    <div class="fg"><label>Password</label><input type="password" id="signin-password" placeholder="Your password"/></div>
     <div id="signin-status" style="font-size:13px;margin-bottom:0.5rem;"></div>
     <div class="mfooter">
       <button class="btn-cancel" onclick="closeModal('signin-modal')">Cancel</button>
@@ -336,16 +337,17 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
   </div>
 </div>
 
+<!-- EMPLOYER SIGNUP MODAL -->
 <div class="overlay" id="employer-signup-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('employer-signup-modal')">×</button>
     <h2>Employer sign up</h2>
-    <p style="color:#666;font-size:13px;margin-bottom:1.25rem;">Create your employer account to post jobs. Standard jobs from £50 · Habesha businesses post free for 30 days.</p>
-    <div class="fg"><label>Company / business name</label><input type="text" id="emp-company" placeholder="Your business name" /></div>
-    <div class="fg"><label>Contact name</label><input type="text" id="emp-contact" placeholder="Your full name" /></div>
-    <div class="fg"><label>Email address</label><input type="email" id="emp-email" placeholder="your@business.com" /></div>
-    <div class="fg"><label>Phone number</label><input type="tel" id="emp-phone" placeholder="07..." /></div>
-    <div class="fg"><label>Password</label><input type="password" id="emp-password" placeholder="Create a password" /></div>
+    <p style="color:#666;font-size:13px;margin-bottom:1.25rem;">Standard jobs from £50 · Habesha businesses post free for 30 days.</p>
+    <div class="fg"><label>Company / business name</label><input type="text" id="emp-company" placeholder="Your business name"/></div>
+    <div class="fg"><label>Contact name</label><input type="text" id="emp-contact" placeholder="Your full name"/></div>
+    <div class="fg"><label>Email address</label><input type="email" id="emp-email" placeholder="your@business.com"/></div>
+    <div class="fg"><label>Phone number</label><input type="tel" id="emp-phone" placeholder="07..."/></div>
+    <div class="fg"><label>Password</label><input type="password" id="emp-password" placeholder="Create a password"/></div>
     <div class="mfooter">
       <button class="btn-cancel" onclick="closeModal('employer-signup-modal')">Cancel</button>
       <button class="btn-submit" onclick="createEmployerAccount()">Create employer account →</button>
@@ -356,16 +358,17 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
   </div>
 </div>
 
+<!-- JOB SEEKER REGISTER MODAL -->
 <div class="overlay" id="register-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('register-modal')">×</button>
     <h2>Job seeker sign up</h2>
     <div class="pnote">£20 per year for full access · Cancel anytime</div>
-    <p style="color:#666;font-size:13px;margin-bottom:1.25rem;">Create your account below, then continue to payment to unlock unlimited job applications.</p>
-    <div class="fg"><label>Full name</label><input type="text" id="reg-name" placeholder="Your full name" /></div>
-    <div class="fg"><label>Email address</label><input type="email" id="reg-email" placeholder="your@email.com" /></div>
-    <div class="fg"><label>Phone number</label><input type="tel" id="reg-phone" placeholder="07..." /></div>
-    <div class="fg"><label>Password</label><input type="password" id="reg-password" placeholder="Create a password" /></div>
+    <p style="color:#666;font-size:13px;margin-bottom:1.25rem;">Create your account, then continue to payment to unlock unlimited job applications.</p>
+    <div class="fg"><label>Full name</label><input type="text" id="reg-name" placeholder="Your full name"/></div>
+    <div class="fg"><label>Email address</label><input type="email" id="reg-email" placeholder="your@email.com"/></div>
+    <div class="fg"><label>Phone number</label><input type="tel" id="reg-phone" placeholder="07..."/></div>
+    <div class="fg"><label>Password</label><input type="password" id="reg-password" placeholder="Create a password"/></div>
     <div class="mfooter">
       <button class="btn-cancel" onclick="closeModal('register-modal')">Cancel</button>
       <button class="btn-submit" onclick="goToPayment()">Continue to payment →</button>
@@ -373,6 +376,7 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
   </div>
 </div>
 
+<!-- PAYMENT MODAL -->
 <div class="overlay" id="payment-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('payment-modal')">×</button>
@@ -384,20 +388,11 @@ nav { background: #0f1923; padding: 0 1.5rem; display: flex; justify-content: sp
       ✓ Track your applications<br>
       ✓ Access to Habesha business jobs
     </p>
-    <div id="stripe-card-element" style="border:1px solid #ddd;border-radius:8px;padding:14px;margin-bottom:1rem;background:#f8fafc;">
-      <div class="fg" style="margin-bottom:0.75rem;">
-        <label>Card number</label>
-        <input type="text" placeholder="1234 1234 1234 1234" id="card-number" />
-      </div>
+    <div style="border:1px solid #ddd;border-radius:8px;padding:14px;margin-bottom:1rem;background:#f8fafc;">
+      <div class="fg" style="margin-bottom:0.75rem;"><label>Card number</label><input type="text" placeholder="1234 1234 1234 1234" id="card-number"/></div>
       <div class="frow">
-        <div class="fg" style="margin-bottom:0;">
-          <label>Expiry</label>
-          <input type="text" placeholder="MM / YY" id="card-expiry" />
-        </div>
-        <div class="fg" style="margin-bottom:0;">
-          <label>CVC</label>
-          <input type="text" placeholder="CVC" id="card-cvc" />
-        </div>
+        <div class="fg" style="margin-bottom:0;"><label>Expiry</label><input type="text" placeholder="MM / YY" id="card-expiry"/></div>
+        <div class="fg" style="margin-bottom:0;"><label>CVC</label><input type="text" placeholder="CVC" id="card-cvc"/></div>
       </div>
     </div>
     <button class="btn-go" onclick="processPayment()">Pay £20 and unlock access →</button>
@@ -415,28 +410,12 @@ var currentPage = 1;
 var pageCache = {};
 var seenJobKeys = {};
 
-window.addEventListener('DOMContentLoaded', function() {
-  startNewSearch('', '');
-});
+window.addEventListener('DOMContentLoaded', function() { startNewSearch('',''); });
 
-function handleSearch() {
+function doSearch() {
   var kw = document.getElementById('kw-input').value.trim();
   var loc = document.getElementById('city-input').value.trim();
   startNewSearch(kw, loc);
-}
-
-function doSearch() { handleSearch(); }
-
-function cleanLocationName(loc, fallbackSearch) {
-  if (!loc) return fallbackSearch || 'UK';
-  return loc.trim();
-}
-
-function locationMatches(jobLocation, searchLocation) {
-  if (!searchLocation) return true;
-  var jl = (jobLocation || '').toLowerCase();
-  var sl = searchLocation.toLowerCase().trim();
-  return jl.indexOf(sl) !== -1 || sl.indexOf(jl) !== -1;
 }
 
 function startNewSearch(kw, loc) {
@@ -452,8 +431,8 @@ function goToPage(page) {
   if (page < 1) return;
   currentPage = page;
   loadPage(page);
-  var pageEl = document.querySelector('.page');
-  if (pageEl) window.scrollTo({ top: pageEl.offsetTop - 80, behavior: 'smooth' });
+  var el = document.querySelector('.page');
+  if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
 }
 
 function cacheKey(page) {
@@ -465,11 +444,7 @@ function loadPage(page) {
   var status = document.getElementById('status-txt');
   var key = cacheKey(page);
 
-  if (pageCache[key]) {
-    allJobs = pageCache[key];
-    renderPage();
-    return;
-  }
+  if (pageCache[key]) { allJobs = pageCache[key]; renderPage(); return; }
 
   list.innerHTML = '<div class="loading"><div class="spinner"></div><p>Loading live jobs...</p></div>';
   if (status) status.textContent = 'Connecting...';
@@ -482,24 +457,18 @@ function loadPage(page) {
     fetch(adzunaUrl).then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
   ]).then(function(results) {
     var rawJobs = [];
-    var reedCount = 0;
-    var adzunaCount = 0;
+    var reedCount = 0, adzunaCount = 0;
 
     if (results[0].status === 'fulfilled' && results[0].value && results[0].value.results) {
       results[0].value.results.forEach(function(j) {
-        var loc = cleanLocationName(j.locationName, currentLocation);
+        var loc = (j.locationName || currentLocation || 'UK').trim();
         if (!locationMatches(loc, currentLocation)) return;
         rawJobs.push({
-          id: 'r_' + j.jobId,
-          title: j.jobTitle || 'Job',
-          company: j.employerName || 'Employer',
-          location: loc,
-          salary: getSalary(j.minimumSalary),
-          type: formatJobType(j.jobType),
-          posted: getDate(j.date),
-          source: 'Reed',
-          category: getCategory(j.jobTitle),
-          url: j.jobUrl || '#'
+          id: 'r_' + j.jobId, title: j.jobTitle || 'Job',
+          company: j.employerName || 'Employer', location: loc,
+          salary: getSalary(j.minimumSalary), type: formatJobType(j.jobType),
+          posted: getDate(j.date), source: 'Reed',
+          category: getCategory(j.jobTitle), url: j.jobUrl || '#'
         });
       });
       reedCount = results[0].value.results.length;
@@ -507,21 +476,14 @@ function loadPage(page) {
 
     if (results[1].status === 'fulfilled' && results[1].value && results[1].value.results) {
       results[1].value.results.forEach(function(j) {
-        var locDisplay = 'UK';
-        if (j.location && j.location.display_name) locDisplay = j.location.display_name;
-        var loc = cleanLocationName(locDisplay, currentLocation);
-        if (!locationMatches(loc, currentLocation)) return;
+        var locDisplay = (j.location && j.location.display_name) ? j.location.display_name : (currentLocation || 'UK');
+        if (!locationMatches(locDisplay, currentLocation)) return;
         rawJobs.push({
-          id: 'a_' + j.id,
-          title: j.title || 'Job',
-          company: (j.company && j.company.display_name) || 'Employer',
-          location: loc,
-          salary: getSalary(j.salary_min),
-          type: formatJobType(j.contract_time),
-          posted: getDate(j.created),
-          source: 'Adzuna',
-          category: getCategory(j.title),
-          url: j.redirect_url || '#'
+          id: 'a_' + j.id, title: j.title || 'Job',
+          company: (j.company && j.company.display_name) || 'Employer', location: locDisplay,
+          salary: getSalary(j.salary_min), type: formatJobType(j.contract_time),
+          posted: getDate(j.created), source: 'Adzuna',
+          category: getCategory(j.title), url: j.redirect_url || '#'
         });
       });
       adzunaCount = results[1].value.results.length;
@@ -529,38 +491,61 @@ function loadPage(page) {
 
     var uniqueJobs = [];
     rawJobs.forEach(function(job) {
-      var uniqueKey = (job.title + '||' + job.company + '||' + job.location.substring(0, 5)).toLowerCase().replace(/\s+/g, '');
-      if (!seenJobKeys[uniqueKey]) {
-        seenJobKeys[uniqueKey] = true;
-        uniqueJobs.push(job);
-      }
+      var key = (job.title + '||' + job.company + '||' + job.location.substring(0,5)).toLowerCase().replace(/\s+/g,'');
+      if (!seenJobKeys[key]) { seenJobKeys[key] = true; uniqueJobs.push(job); }
     });
 
-    pageCache[key] = uniqueJobs;
+    pageCache[cacheKey(page)] = uniqueJobs;
     allJobs = uniqueJobs;
 
     if (status) {
       status.textContent = 'Reed: ' + reedCount + ' · Adzuna: ' + adzunaCount + ' — page ' + page;
       status.style.color = '#0f6e56';
     }
+    var totalEl = document.getElementById('total-count');
+    if (totalEl) totalEl.textContent = uniqueJobs.length > 0 ? uniqueJobs.length + '+' : '0';
 
     renderPage();
   }).catch(function() {
-    list.innerHTML = '<div class="loading">Could not connect to server. Please refresh.</div>';
+    list.innerHTML = '<div class="loading">Could not connect. Please refresh.</div>';
     if (status) { status.textContent = 'Connection error'; status.style.color = '#cc0000'; }
   });
 }
 
 function renderPage() {
-  showJobs();
-
-  var totalEl = document.getElementById('total-count');
-  if (totalEl) totalEl.textContent = allJobs.length > 0 ? allJobs.length + '+' : '0';
-
+  var list = document.getElementById('jobs-list');
   var pag = document.getElementById('pagination');
   var indicator = document.getElementById('page-indicator');
   var prevBtn = document.getElementById('btn-prev');
   var nextBtn = document.getElementById('btn-next');
+
+  if (allJobs.length === 0) {
+    list.innerHTML = '<div class="loading">No jobs found. Try a different search or city.</div>';
+  } else {
+    var html = '';
+    allJobs.forEach(function(j) {
+      var badgeClass = 'badge-' + j.category;
+      var srcClass = 'src-' + j.source.toLowerCase();
+      html += '<div class="job-card" onclick="openApplyModal(' + JSON.stringify(j).replace(/"/g,'&quot;') + ')">' +
+        '<div>' +
+          '<div class="job-badge ' + badgeClass + '">' + j.category.toUpperCase() + '</div>' +
+          '<div class="jtitle">' + escapeHTML(j.title) + '</div>' +
+          '<div class="jcompany">' + escapeHTML(j.company) + '</div>' +
+          '<div class="jmeta">' +
+            '<span>📍 ' + escapeHTML(j.location) + '</span>' +
+            '<span>💷 ' + j.salary + '</span>' +
+            '<span>⏰ ' + j.type + '</span>' +
+            '<span>🕐 ' + j.posted + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="jside">' +
+          '<span class="src-tag ' + srcClass + '">' + j.source + '</span>' +
+          '<button class="btn-apply">View details</button>' +
+        '</div>' +
+      '</div>';
+    });
+    list.innerHTML = html;
+  }
 
   pag.style.display = 'flex';
   indicator.textContent = 'Page ' + currentPage;
@@ -568,103 +553,50 @@ function renderPage() {
   nextBtn.disabled = allJobs.length === 0;
 }
 
-function showJobs() {
-  var list = document.getElementById('jobs-list');
-  var filtered = allJobs;
-
-  if (filtered.length === 0) {
-    list.innerHTML = '<div class="loading">No more jobs found for this search on this page. Try Previous, or search a different job title or city!</div>';
-    return;
-  }
-
-  var html = '';
-  filtered.forEach(function(j) {
-    var srcClass = 'src-' + j.source.toLowerCase();
-    var badgeClass = 'badge-' + j.category;
-    html += '<div class="job-card" onclick="openApplyModal(' + JSON.stringify(j).replace(/"/g, '&quot;') + ')">' +
-              '<div>' +
-                '<div class="job-badge ' + badgeClass + '">' + j.category.toUpperCase() + '</div>' +
-                '<div class="jtitle">' + escapeHTML(j.title) + '</div>' +
-                '<div class="jcompany">' + escapeHTML(j.company) + '</div>' +
-                '<div class="jmeta">' +
-                  '<span>📍 ' + escapeHTML(j.location) + '</span>' +
-                  '<span>💷 ' + j.salary + '</span>' +
-                  '<span>⏰ ' + escapeHTML(j.type) + '</span>' +
-                  '<span>🕐 ' + escapeHTML(j.posted) + '</span>' +
-                '</div>' +
-              '</div>' +
-              '<div class="jside">' +
-                '<span class="src-tag ' + srcClass + '">' + j.source + '</span>' +
-                '<button class="btn-apply">View details</button>' +
-              '</div>' +
-            '</div>';
-  });
-  list.innerHTML = html;
+function locationMatches(jobLoc, searchLoc) {
+  if (!searchLoc) return true;
+  var jl = (jobLoc || '').toLowerCase();
+  var sl = searchLoc.toLowerCase().trim();
+  return jl.indexOf(sl) !== -1 || sl.indexOf(jl) !== -1;
 }
 
-function quickSearch(kw, btn) {
-  document.querySelectorAll('.fpill').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  document.getElementById('kw-input').value = kw;
-  var loc = document.getElementById('city-input').value.trim();
-  startNewSearch(kw, loc);
-}
-
+// Expanded category detection — tech/specialist keywords now map
+// to 'other' and are displayed as-is, but the most common Habesha
+// community job types are all explicitly detected first.
 function getCategory(title) {
   if (!title) return 'other';
   var t = title.toLowerCase();
-  if (t.includes('warehouse') || t.includes('logistics') || t.includes('picker') || t.includes('packer') || t.includes('forklift') || t.includes('store') || t.includes('depot')) return 'warehouse';
-  if (t.includes('security') || t.includes('guard') || t.includes('cctv') || t.includes('officer') || t.includes('door supervisor')) return 'security';
-  if (t.includes('care') || t.includes('nurse') || t.includes('support worker') || t.includes('healthcare') || t.includes('carer') || t.includes('hca')) return 'care';
-  if (t.includes('clean') || t.includes('domestic') || t.includes('housekeep') || t.includes('facilities') || t.includes('janitor')) return 'cleaning';
-  if (t.includes('driver') || t.includes('delivery') || t.includes('van') || t.includes('courier') || t.includes('hgv') || t.includes('lgv')) return 'driver';
-  if (t.includes('construct') || t.includes('labour') || t.includes('scaff') || t.includes('groundwork')) return 'construction';
+  if (t.includes('warehouse') || t.includes('picker') || t.includes('packer') || t.includes('forklift') || t.includes('flt') || t.includes('bendi') || t.includes('counterbalance') || t.includes('reach truck') || t.includes('vna') || t.includes('depot') || t.includes('fulfilment') || t.includes('logistics operative')) return 'warehouse';
+  if (t.includes('security') || t.includes('door supervisor') || t.includes('sia') || t.includes('cctv') || t.includes('security guard') || t.includes('security officer')) return 'security';
+  if (t.includes('care assistant') || t.includes('carer') || t.includes('support worker') || t.includes('healthcare assistant') || t.includes('hca') || t.includes('nurse') || t.includes('care worker') || t.includes('domiciliary')) return 'care';
+  if (t.includes('cleaner') || t.includes('cleaning operative') || t.includes('domestic') || t.includes('housekeeper') || t.includes('janitor') || t.includes('facilities') || t.includes('hygiene')) return 'cleaning';
+  if (t.includes('driver') || t.includes('hgv') || t.includes('lgv') || t.includes('van driver') || t.includes('delivery driver') || t.includes('courier') || t.includes('multi-drop') || t.includes('multi drop')) return 'driver';
+  if (t.includes('construct') || t.includes('labourer') || t.includes('scaffolder') || t.includes('groundworker') || t.includes('bricklayer') || t.includes('plasterer') || t.includes('electrician') || t.includes('plumber')) return 'construction';
   return 'other';
 }
 
 function getSalary(sal) {
   if (!sal || sal === 0) return 'Competitive rate';
-  // Sanity check: a "salary" under £1000/year or over £200/hour is
-  // almost certainly bad data from the source (e.g. a daily rate
-  // mislabeled as yearly). Show it plainly rather than as fact.
   if (sal < 100) return '£' + sal.toFixed(2) + ' / hour';
-  if (sal < 1000) return 'Rate not confirmed';
+  // Salary sanity check: yearly values under £5,000 are almost certainly
+  // daily/session rates mislabeled as annual — show as unconfirmed
+  if (sal < 5000) return 'Rate not confirmed';
   return '£' + Number(sal).toLocaleString() + ' / year';
 }
 
-// Converts Adzuna's raw values like "full_time" / "part_time" into
-// readable text, and leaves already-clean values (like Reed's
-// "Full-time") untouched.
 function formatJobType(type) {
   if (!type) return 'Full-time';
-  var map = {
-    'full_time': 'Full-time',
-    'part_time': 'Part-time',
-    'permanent': 'Full-time',
-    'contract': 'Contract'
-  };
-  return map[type] || type;
+  var map = { 'full_time': 'Full-time', 'part_time': 'Part-time', 'permanent': 'Full-time', 'contract': 'Contract', 'temporary': 'Temporary' };
+  return map[type.toLowerCase()] || type;
 }
 
-// Reed sends dates as "DD/MM/YYYY" (e.g. "11/06/2026") which
-// JavaScript's Date() misreads as MM/DD/YYYY, silently producing
-// wrong or invalid dates. Adzuna sends proper ISO timestamps which
-// Date() parses correctly on its own. This function detects which
-// format it received and parses each one correctly.
 function parseAnyDate(dtStr) {
   if (!dtStr) return null;
-
-  // Reed format: DD/MM/YYYY
   var ddmmyyyy = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(dtStr);
   if (ddmmyyyy) {
-    var day = parseInt(ddmmyyyy[1], 10);
-    var month = parseInt(ddmmyyyy[2], 10) - 1;
-    var year = parseInt(ddmmyyyy[3], 10);
-    var parsed = new Date(year, month, day);
-    return isNaN(parsed.getTime()) ? null : parsed;
+    var d = new Date(parseInt(ddmmyyyy[3],10), parseInt(ddmmyyyy[2],10)-1, parseInt(ddmmyyyy[1],10));
+    return isNaN(d.getTime()) ? null : d;
   }
-
-  // Adzuna / ISO format: handled natively
   var iso = new Date(dtStr);
   return isNaN(iso.getTime()) ? null : iso;
 }
@@ -672,45 +604,30 @@ function parseAnyDate(dtStr) {
 function getDate(dtStr) {
   var posted = parseAnyDate(dtStr);
   if (!posted) return 'Recently posted';
-
-  var now = new Date();
-  var diffMs = now - posted;
-  var diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+  var diffMs = Date.now() - posted.getTime();
+  if (diffMs < 0) return 'Recently posted';
+  var diffHours = Math.floor(diffMs / 3600000);
   var diffDays = Math.floor(diffHours / 24);
-
-  if (diffMs < 0) return 'Recently posted'; // safety net for clock/timezone edge cases
   if (diffHours < 1) return 'Posted just now';
-  if (diffHours < 24) return 'Posted ' + diffHours + ' hour' + (diffHours === 1 ? '' : 's') + ' ago';
+  if (diffHours < 24) return 'Posted ' + diffHours + ' hour' + (diffHours===1?'':'s') + ' ago';
   if (diffDays === 1) return 'Posted 1 day ago';
   if (diffDays < 30) return 'Posted ' + diffDays + ' days ago';
-
-  var diffMonths = Math.floor(diffDays / 30);
-  if (diffMonths === 1) return 'Posted 1 month ago';
-  return 'Posted ' + diffMonths + ' months ago';
+  var months = Math.floor(diffDays/30);
+  return 'Posted ' + months + ' month' + (months===1?'':'s') + ' ago';
 }
 
 function escapeHTML(str) {
-  if (!str) return '';
-  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return (str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
 function openApplyModal(job) {
-  if (!hasAccess) {
-    closeModal('apply-modal');
-    openModal('register-modal');
-    return;
-  }
+  if (!hasAccess) { openModal('register-modal'); return; }
   document.getElementById('m-source').textContent = job.source + ' · ' + job.category.toUpperCase();
   document.getElementById('m-source').className = 'job-badge badge-' + job.category;
   document.getElementById('m-title').textContent = job.title;
   document.getElementById('m-company').textContent = job.company;
-  document.getElementById('m-details').innerHTML =
-    '📍 Location: ' + job.location + '<br>' +
-    '💷 Salary: ' + job.salary + '<br>' +
-    '⏰ Type: ' + job.type + '<br>' +
-    '🕐 Posted: ' + job.posted;
-  var applyBtn = document.getElementById('m-apply-btn');
-  applyBtn.href = job.url && job.url !== '#' ? job.url : 'https://www.reed.co.uk';
+  document.getElementById('m-details').innerHTML = '📍 ' + job.location + '<br>💷 ' + job.salary + '<br>⏰ ' + job.type + '<br>🕐 ' + job.posted;
+  document.getElementById('m-apply-btn').href = (job.url && job.url !== '#') ? job.url : 'https://www.reed.co.uk';
   openModal('apply-modal');
 }
 
@@ -724,8 +641,8 @@ function openPostModal(isHabesha) {
 function switchTab(tab, el) {
   document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
   el.classList.add('active');
-  document.getElementById('main-panel').style.display = tab === 'main' ? 'block' : 'none';
-  document.getElementById('habesha-panel').style.display = tab === 'habesha' ? 'block' : 'none';
+  document.getElementById('main-panel').style.display = tab==='main'?'block':'none';
+  document.getElementById('habesha-panel').style.display = tab==='habesha'?'block':'none';
 }
 
 function openModal(id) { document.getElementById(id).classList.add('open'); }
@@ -736,30 +653,18 @@ var hasAccess = false;
 var registeredEmployer = null;
 var knownAccounts = JSON.parse(sessionStorage.getItem('abayjobs_known_accounts') || '[]');
 
-// Restore session on page load if the person already signed up/in earlier
 (function restoreSession() {
-  var savedUser = sessionStorage.getItem('abayjobs_user');
-  var savedAccess = sessionStorage.getItem('abayjobs_access');
-  var savedEmployer = sessionStorage.getItem('abayjobs_employer');
-  if (savedUser) registeredUser = JSON.parse(savedUser);
-  if (savedAccess === 'true') hasAccess = true;
-  if (savedEmployer) registeredEmployer = JSON.parse(savedEmployer);
+  var u = sessionStorage.getItem('abayjobs_user');
+  var e = sessionStorage.getItem('abayjobs_employer');
+  if (u) registeredUser = JSON.parse(u);
+  if (sessionStorage.getItem('abayjobs_access') === 'true') hasAccess = true;
+  if (e) registeredEmployer = JSON.parse(e);
 })();
 
-function saveKnownAccounts() {
-  sessionStorage.setItem('abayjobs_known_accounts', JSON.stringify(knownAccounts));
-}
-
-// Routes to the right dashboard if already signed in this session,
-// otherwise opens the Sign In modal.
 function goToAccount() {
-  if (registeredUser) {
-    window.location.href = 'jobseeker-dashboard.html';
-  } else if (registeredEmployer) {
-    window.location.href = 'employer-dashboard.html';
-  } else {
-    openModal('signin-modal');
-  }
+  if (registeredUser) { window.location.href = 'jobseeker-dashboard.html'; }
+  else if (registeredEmployer) { window.location.href = 'employer-dashboard.html'; }
+  else { openModal('signin-modal'); }
 }
 
 function goToPayment() {
@@ -767,15 +672,10 @@ function goToPayment() {
   var email = document.getElementById('reg-email').value.trim();
   var phone = document.getElementById('reg-phone').value.trim();
   var password = document.getElementById('reg-password').value.trim();
-
-  if (!name || !email || !phone || !password) {
-    alert('Please fill in all fields to create your account.');
-    return;
-  }
-
-  registeredUser = { name: name, email: email, phone: phone, password: password, type: 'jobseeker' };
+  if (!name || !email || !phone || !password) { alert('Please fill in all fields.'); return; }
+  registeredUser = { name:name, email:email, phone:phone, password:password, type:'jobseeker' };
   knownAccounts.push(registeredUser);
-  saveKnownAccounts();
+  sessionStorage.setItem('abayjobs_known_accounts', JSON.stringify(knownAccounts));
   sessionStorage.setItem('abayjobs_user', JSON.stringify(registeredUser));
   closeModal('register-modal');
   openModal('payment-modal');
@@ -787,18 +687,13 @@ function createEmployerAccount() {
   var email = document.getElementById('emp-email').value.trim();
   var phone = document.getElementById('emp-phone').value.trim();
   var password = document.getElementById('emp-password').value.trim();
-
-  if (!company || !contact || !email || !phone || !password) {
-    alert('Please fill in all fields to create your employer account.');
-    return;
-  }
-
-  registeredEmployer = { company: company, contact: contact, email: email, phone: phone, password: password, type: 'employer' };
+  if (!company||!contact||!email||!phone||!password) { alert('Please fill in all fields.'); return; }
+  registeredEmployer = { company:company, contact:contact, email:email, phone:phone, password:password, type:'employer' };
   knownAccounts.push(registeredEmployer);
-  saveKnownAccounts();
+  sessionStorage.setItem('abayjobs_known_accounts', JSON.stringify(knownAccounts));
   sessionStorage.setItem('abayjobs_employer', JSON.stringify(registeredEmployer));
   closeModal('employer-signup-modal');
-  if (confirm('Employer account created for ' + company + '! Go to your employer dashboard now to post your first job?')) {
+  if (confirm('Employer account created for ' + company + '! Go to your employer dashboard now?')) {
     window.location.href = 'employer-dashboard.html';
   }
 }
@@ -807,88 +702,49 @@ function doSignIn() {
   var email = document.getElementById('signin-email').value.trim();
   var password = document.getElementById('signin-password').value.trim();
   var statusEl = document.getElementById('signin-status');
-
-  if (!email || !password) {
-    statusEl.textContent = 'Please enter your email and password.';
-    statusEl.style.color = '#cc0000';
-    return;
-  }
-
-  var account = knownAccounts.find(function(a) { return a.email === email && a.password === password; });
-
-  if (!account) {
-    statusEl.textContent = 'No account found with those details. Please sign up first.';
-    statusEl.style.color = '#cc0000';
-    return;
-  }
-
-  statusEl.textContent = 'Signed in successfully!';
-  statusEl.style.color = '#0f6e56';
-
-  if (account.type === 'jobseeker') {
+  if (!email||!password) { statusEl.textContent='Please enter email and password.'; statusEl.style.color='#cc0000'; return; }
+  var account = knownAccounts.find(function(a) { return a.email===email && a.password===password; });
+  if (!account) { statusEl.textContent='No account found. Please sign up first.'; statusEl.style.color='#cc0000'; return; }
+  statusEl.textContent='Signed in!'; statusEl.style.color='#0f6e56';
+  if (account.type==='jobseeker') {
     registeredUser = account;
     sessionStorage.setItem('abayjobs_user', JSON.stringify(account));
-    setTimeout(function() {
-      closeModal('signin-modal');
-      window.location.href = 'jobseeker-dashboard.html';
-    }, 600);
+    setTimeout(function() { closeModal('signin-modal'); window.location.href='jobseeker-dashboard.html'; }, 600);
   } else {
     registeredEmployer = account;
     sessionStorage.setItem('abayjobs_employer', JSON.stringify(account));
-    setTimeout(function() {
-      closeModal('signin-modal');
-      window.location.href = 'employer-dashboard.html';
-    }, 600);
+    setTimeout(function() { closeModal('signin-modal'); window.location.href='employer-dashboard.html'; }, 600);
   }
 }
 
 function processPayment() {
-  var cardNumber = document.getElementById('card-number').value.trim();
-  var cardExpiry = document.getElementById('card-expiry').value.trim();
-  var cardCvc = document.getElementById('card-cvc').value.trim();
   var statusEl = document.getElementById('payment-status');
-
-  if (!cardNumber || !cardExpiry || !cardCvc) {
-    statusEl.textContent = 'Please enter your card details.';
-    statusEl.style.color = '#cc0000';
-    return;
-  }
-
-  statusEl.textContent = 'Processing payment...';
-  statusEl.style.color = '#888';
-
-  // ─────────────────────────────────────────────────────────
-  // STRIPE INTEGRATION POINT
-  // Replace this block with a real Stripe Checkout / Payment
-  // Intent call once your Stripe account and a backend route
-  // (e.g. /api/create-checkout-session) are ready.
-  // ─────────────────────────────────────────────────────────
+  var n = document.getElementById('card-number').value.trim();
+  var x = document.getElementById('card-expiry').value.trim();
+  var c = document.getElementById('card-cvc').value.trim();
+  if (!n||!x||!c) { statusEl.textContent='Please enter your card details.'; statusEl.style.color='#cc0000'; return; }
+  statusEl.textContent='Processing...'; statusEl.style.color='#888';
+  // STRIPE INTEGRATION POINT — replace this timeout block with a real
+  // Stripe Payment Intent call once your stripe secret key is added to
+  // Render's environment variables and /api/create-checkout-session is built.
   setTimeout(function() {
     hasAccess = true;
-    sessionStorage.setItem('abayjobs_access', 'true');
-    statusEl.textContent = 'Payment successful! Full access unlocked.';
-    statusEl.style.color = '#0f6e56';
+    sessionStorage.setItem('abayjobs_access','true');
+    statusEl.textContent='Payment successful! Full access unlocked.'; statusEl.style.color='#0f6e56';
     setTimeout(function() {
       closeModal('payment-modal');
-      if (confirm('Welcome ' + (registeredUser ? registeredUser.name : '') + '! You now have full access. Go to your account dashboard?')) {
-        window.location.href = 'jobseeker-dashboard.html';
+      if (confirm('Welcome ' + (registeredUser?registeredUser.name:'') + '! Go to your account dashboard?')) {
+        window.location.href='jobseeker-dashboard.html';
       }
     }, 1200);
   }, 1500);
 }
 
 document.querySelectorAll('.overlay').forEach(function(el) {
-  el.addEventListener('click', function(e) {
-    if (e.target === el) el.classList.remove('open');
-  });
+  el.addEventListener('click', function(e) { if (e.target===el) el.classList.remove('open'); });
 });
-
-document.getElementById('city-input').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') doSearch();
-});
-document.getElementById('kw-input').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') doSearch();
-});
+document.getElementById('kw-input').addEventListener('keydown', function(e) { if (e.key==='Enter') doSearch(); });
+document.getElementById('city-input').addEventListener('keydown', function(e) { if (e.key==='Enter') doSearch(); });
 </script>
 </body>
 </html>
